@@ -2501,3 +2501,75 @@ input, textarea, select {
   border: 1px solid rgba(201, 169, 110, 0.15);
   border-radius: var(--radius-lg);
 }
+
+/* ---------- Animated Brand Preloader ---------- */
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7F4EE;
+  color: #1C1917;
+  overflow: hidden;
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+.preloader-symbol {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  background: rgba(28, 25, 23, 0.04);
+  box-shadow: 0 10px 30px rgba(28, 25, 23, 0.08);
+  color: #1C1917;
+}
+
+.preloader-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.preloader-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #1C1917;
+  line-height: 1;
+}
+
+.preloader-subtitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+.preloader-progress-track {
+  width: 140px;
+  height: 2px;
+  background: rgba(28, 25, 23, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: var(--space-xs);
+}
+
+.preloader-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--terracotta), var(--champagne-gold));
+  border-radius: 2px;
+}

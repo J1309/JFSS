@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Preloader from "@/components/common/Preloader";
 
 export const metadata: Metadata = {
   title: "JionaFashion — Modern South Asian Dailywear & Casual Fashion",
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Preloader />
         {children}
       </body>
     </html>
