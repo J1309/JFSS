@@ -49,15 +49,6 @@ export default function HeroSection() {
           '-=0.4'
         )
         .from(
-          '.hero-stats-row',
-          {
-            opacity: 0,
-            y: 15,
-            duration: 0.7,
-          },
-          '-=0.3'
-        )
-        .from(
           '.hero-right-roulette',
           {
             opacity: 0,
@@ -110,30 +101,6 @@ export default function HeroSection() {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
-            <a href="/shop?category=women" className="btn btn-secondary btn-lg">
-              Women
-            </a>
-            <a href="/shop?category=men" className="btn btn-secondary btn-lg">
-              Men
-            </a>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="hero-stats-row">
-            <div className="stat-item">
-              <strong>100%</strong>
-              <span>Organic Cotton</span>
-            </div>
-            <div className="stat-divider" />
-            <div className="stat-item">
-              <strong>Breezy</strong>
-              <span>All-Day Fit</span>
-            </div>
-            <div className="stat-divider" />
-            <div className="stat-item">
-              <strong>Easy</strong>
-              <span>Machine Washable</span>
-            </div>
           </div>
         </div>
 

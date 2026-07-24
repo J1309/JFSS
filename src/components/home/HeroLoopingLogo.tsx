@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 export default function HeroLoopingLogo() {
   return (
     <motion.div
-      className="hero-looping-logo"
+      className="hero-looping-logo hero-looping-logo-big"
       initial={{ opacity: 0, y: 25, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ scale: 1.02, y: -2 }}
+      whileHover={{ scale: 1.03, y: -2 }}
     >
       {/* Animated Diamond Monogram Symbol Box */}
       <div className="hero-logo-symbol-box">
-        <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+        <svg width="42" height="42" viewBox="0 0 36 36" fill="none">
           {/* Diamond Outer Frame */}
           <motion.rect
             x="18"
@@ -53,7 +53,7 @@ export default function HeroLoopingLogo() {
             cx="18"
             cy="8"
             r="2"
-            fill="var(--champagne-gold)"
+            fill="var(--crimson)"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.9, type: 'spring', stiffness: 450 }}
@@ -66,10 +66,10 @@ export default function HeroLoopingLogo() {
         <motion.span
           className="hero-logo-title"
           initial={{ opacity: 0, letterSpacing: '0.3em' }}
-          animate={{ opacity: 1, letterSpacing: '0.18em' }}
+          animate={{ opacity: 1, letterSpacing: '0.20em' }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          JIONA
+          JIONAFASHION
         </motion.span>
         <motion.span
           className="hero-logo-subtitle"
@@ -77,7 +77,7 @@ export default function HeroLoopingLogo() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          FASHION · EST. 2026
+          EST. 2026
         </motion.span>
       </div>
 
