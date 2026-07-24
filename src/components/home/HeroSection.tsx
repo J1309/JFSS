@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import HeroLoopingLogo from './HeroLoopingLogo';
 import HeroRoulette from './HeroRoulette';
 
 export default function HeroSection() {
@@ -13,7 +14,7 @@ export default function HeroSection() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.from('.hero-badge-pill', {
+      tl.from('.hero-looping-logo', {
         y: 20,
         opacity: 0,
         duration: 0.7,
@@ -88,10 +89,7 @@ export default function HeroSection() {
       <div className="hero-container">
         {/* Left Side: Editorial Content */}
         <div className="hero-left">
-          <div className="hero-badge-pill">
-            <span className="badge-dot" />
-            <span>New Season Dailywear · SS 2026</span>
-          </div>
+          <HeroLoopingLogo />
 
           <h1 className="hero-title">
             <span className="hero-title-line">Effortless Style,</span>
