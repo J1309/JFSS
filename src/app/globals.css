@@ -752,11 +752,11 @@ input, textarea, select {
   gap: var(--space-md);
   padding: 8px 22px 8px 10px;
   border-radius: var(--radius-full);
-  background: rgba(28, 34, 42, 0.75);
+  background: var(--bg-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   margin-bottom: var(--space-lg);
   cursor: pointer;
   user-select: none;
@@ -766,9 +766,9 @@ input, textarea, select {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
-  background: #0F1317;
-  color: #FAF7F2;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -786,7 +786,7 @@ input, textarea, select {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: #FAF7F2;
+  color: var(--text-primary);
 }
 
 .hero-logo-subtitle {
@@ -800,7 +800,7 @@ input, textarea, select {
 .hero-logo-divider {
   width: 1px;
   height: 24px;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--border-color);
 }
 
 .hero-logo-tag {
@@ -811,7 +811,7 @@ input, textarea, select {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #FAF7F2;
+  color: var(--text-primary);
 }
 
 .tag-dot {
@@ -826,7 +826,7 @@ input, textarea, select {
   font-size: clamp(var(--text-4xl), 5vw, var(--text-7xl));
   font-weight: 600;
   line-height: 1.04;
-  color: var(--charcoal);
+  color: var(--text-primary);
   margin-bottom: var(--space-lg);
   letter-spacing: -0.02em;
 }
@@ -843,7 +843,7 @@ input, textarea, select {
 
 .hero-subtitle {
   font-size: var(--text-lg);
-  color: var(--charcoal-muted);
+  color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-2xl);
   max-width: 520px;
@@ -862,7 +862,7 @@ input, textarea, select {
   align-items: center;
   gap: var(--space-xl);
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(44, 44, 44, 0.08);
+  border-top: 1px solid var(--border-color);
   width: 100%;
 }
 
@@ -876,12 +876,12 @@ input, textarea, select {
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 700;
-  color: var(--charcoal);
+  color: var(--text-primary);
 }
 
 .stat-item span {
   font-size: var(--text-xs);
-  color: var(--charcoal-muted);
+  color: var(--text-secondary);
   letter-spacing: 0.03em;
 }
 
@@ -1327,17 +1327,20 @@ input, textarea, select {
 .product-card {
   flex: 0 0 300px;
   scroll-snap-align: start;
-  background: var(--cream);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-base);
   position: relative;
   cursor: pointer;
+  color: var(--text-primary);
 }
 
 .product-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  border-color: var(--border-color-strong);
 }
 
 .product-card-image {
@@ -1345,7 +1348,7 @@ input, textarea, select {
   width: 100%;
   aspect-ratio: 3/4;
   overflow: hidden;
-  background: var(--mist);
+  background: var(--bg-secondary);
 }
 
 .product-card-image-inner {
@@ -1369,7 +1372,7 @@ input, textarea, select {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(15, 19, 23, 0.6);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -1377,18 +1380,20 @@ input, textarea, select {
   cursor: pointer;
   transition: all var(--transition-fast);
   z-index: 2;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 16px;
+  color: #FAF7F2;
 }
 
 .product-card-wishlist:hover {
-  background: var(--dusty-rose);
+  background: var(--saffron);
+  color: #0F1317;
   transform: scale(1.1);
 }
 
 .product-card-wishlist.active {
-  background: var(--dusty-rose);
-  color: var(--deep-maroon);
+  background: var(--saffron);
+  color: #0F1317;
 }
 
 .product-card-badge {
@@ -1406,17 +1411,17 @@ input, textarea, select {
 
 .badge-new {
   background: var(--mehendi-green);
-  color: var(--cream);
+  color: #FAF7F2;
 }
 
 .badge-sale {
-  background: var(--deep-maroon);
-  color: var(--cream);
+  background: var(--terracotta);
+  color: #FAF7F2;
 }
 
 .badge-bestseller {
   background: var(--saffron);
-  color: var(--charcoal);
+  color: #0F1317;
 }
 
 .product-card-quick-add {
@@ -1443,7 +1448,7 @@ input, textarea, select {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--soft-gold);
+  color: var(--saffron);
   margin-bottom: var(--space-xs);
 }
 
@@ -1451,7 +1456,7 @@ input, textarea, select {
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 600;
-  color: var(--charcoal);
+  color: var(--text-primary);
   margin-bottom: var(--space-sm);
 }
 
@@ -1464,12 +1469,12 @@ input, textarea, select {
 .product-card-price .current {
   font-weight: 600;
   font-size: var(--text-lg);
-  color: var(--charcoal);
+  color: var(--text-primary);
 }
 
 .product-card-price .original {
   font-size: var(--text-sm);
-  color: var(--charcoal-muted);
+  color: var(--text-secondary);
   text-decoration: line-through;
 }
 
@@ -1496,10 +1501,12 @@ input, textarea, select {
 
 /* ---------- Brand Story Section ---------- */
 .brand-story {
-  background: var(--charcoal);
-  color: var(--cream);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .brand-story-grid {
@@ -1515,17 +1522,18 @@ input, textarea, select {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--space-xl);
+  color: var(--text-primary);
 }
 
 .brand-story h2 em {
-  color: var(--soft-gold);
+  color: var(--saffron);
   font-style: italic;
 }
 
 .brand-story p {
   font-size: var(--text-lg);
   line-height: 1.8;
-  color: rgba(250, 247, 240, 0.8);
+  color: var(--text-secondary);
   margin-bottom: var(--space-lg);
 }
 
@@ -1534,39 +1542,41 @@ input, textarea, select {
   aspect-ratio: 4/5;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--charcoal-light);
+  background: var(--bg-card);
 }
 
 .brand-story-image::after {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid var(--soft-gold);
+  border: 1px solid var(--border-color-strong);
   border-radius: var(--radius-lg);
   opacity: 0.3;
 }
 
 /* ---------- Testimonials ---------- */
 .testimonial-card {
-  background: var(--cream);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
   position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-quote {
   font-family: var(--font-display);
   font-size: var(--text-6xl);
-  color: var(--soft-gold);
+  color: var(--saffron);
   line-height: 1;
   margin-bottom: var(--space-md);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .testimonial-text {
   font-size: var(--text-lg);
   line-height: 1.7;
-  color: var(--charcoal);
+  color: var(--text-primary);
   margin-bottom: var(--space-xl);
   font-style: italic;
 }
@@ -1579,12 +1589,12 @@ input, textarea, select {
 
 .testimonial-name {
   font-weight: 600;
-  color: var(--charcoal);
+  color: var(--text-primary);
 }
 
 .testimonial-location {
   font-size: var(--text-sm);
-  color: var(--charcoal-muted);
+  color: var(--text-secondary);
 }
 
 .testimonial-stars {

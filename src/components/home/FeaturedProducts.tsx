@@ -108,7 +108,7 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <section className="section" ref={sectionRef} style={{ background: 'var(--ivory)' }}>
+    <section className="section" ref={sectionRef} style={{ background: 'var(--bg-primary)' }}>
       <div className="container">
         <div className="section-header featured-header">
           <span className="text-overline">Everyday Staples</span>
