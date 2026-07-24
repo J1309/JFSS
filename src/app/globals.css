@@ -1,22 +1,29 @@
 /* ============================================
-   JFS FASHION â€” Global Design System
+   JFS FASHION — Global Design System
    Premium South Asian E-Commerce
    ============================================ */
 
 /* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  /* Brand Colors — High-Fashion Dark Mode System */
-  --saffron: #E8A838;
-  --saffron-light: #F0C46A;
-  --saffron-dark: #C88A1C;
-  --terracotta: #C85A32;
-  --terracotta-light: #E0734C;
-  --champagne-gold: #E8A838;
-  --soft-gold: #E8A838;
-  --soft-gold-light: #F0C46A;
+  /* Brand Colors — Crimson Dominant Luxury System */
+  --crimson: #9B0000;
+  --crimson-light: #C41A1A;
+  --crimson-dark: #6B0000;
+  --crimson-overlay: rgba(155, 0, 0, 0.10);
+
+  --grain-dot: rgba(255, 255, 255, 0.06);
+
+  --saffron: #9B0000;
+  --saffron-light: #C41A1A;
+  --saffron-dark: #6B0000;
+  --terracotta: #9B0000;
+  --terracotta-light: #C41A1A;
+  --champagne-gold: #D4A359;
+  --soft-gold: #9B0000;
+  --soft-gold-light: #C41A1A;
   --mehendi-green: #5B7052;
 
   /* Dark Obsidian Neutrals */
@@ -43,40 +50,9 @@
   --text-inverse: #0F1317;
   --border-color: rgba(255, 255, 255, 0.12);
   --border-color-strong: rgba(255, 255, 255, 0.25);
-}
 
-/* ---------- Light Theme Overrides ---------- */
-[data-theme="light"] {
-  --saffron: #A34828;
-  --saffron-light: #C06140;
-  --saffron-dark: #80341B;
-  --terracotta: #A34828;
-  --terracotta-light: #C06140;
-  --champagne-gold: #C5A059;
-  --soft-gold: #C5A059;
-
-  --ivory: #F7F4EE;
-  --cream: #FAF7F2;
-  --warm-white: #FFFFFF;
-  --mist: #EFECE6;
-  --charcoal: #1C1917;
-  --charcoal-light: #292524;
-  --charcoal-muted: #57534E;
-
-  --bg-primary: #F7F4EE;
-  --bg-secondary: #EFECE6;
-  --bg-card: #FFFFFF;
-  --bg-dark: #1C1917;
-  --text-primary: #1C1917;
-  --text-secondary: #57534E;
-  --text-inverse: #FAF7F2;
-  --border-color: rgba(28, 25, 23, 0.09);
-  --border-color-strong: rgba(28, 25, 23, 0.18);
-}
-
-:root {
   /* Typography */
-  --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Font Sizes */
@@ -120,23 +96,61 @@
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(44, 44, 44, 0.06);
   --shadow-md: 0 4px 12px rgba(44, 44, 44, 0.08);
-  --shadow-lg: 0 8px 30px rgba(44, 44, 44, 0.12);
-  --shadow-xl: 0 20px 60px rgba(44, 44, 44, 0.15);
-  --shadow-glow: 0 0 40px rgba(201, 169, 110, 0.2);
+  --shadow-lg: 0 8px 24px rgba(44, 44, 44, 0.12);
+  --shadow-xl: 0 16px 40px rgba(44, 44, 44, 0.16);
+  --shadow-2xl: 0 24px 60px rgba(44, 44, 44, 0.22);
+  --shadow-inner: inset 0 2px 4px rgba(44, 44, 44, 0.06);
 
-  /* Transitions */
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Animations & Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Z-Index */
-  --z-base: 1;
+  /* Z-Index Hierarchy */
+  --z-negative: -1;
+  --z-normal: 1;
+  --z-tooltip: 10;
   --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-overlay: 300;
-  --z-modal: 400;
-  --z-toast: 500;
+  --z-sticky: 500;
+  --z-fixed: 600;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
+}
+
+/* ---------- Light Theme Overrides ---------- */
+[data-theme="light"] {
+  --crimson: #9B0000;
+  --crimson-light: #C41A1A;
+  --crimson-overlay: rgba(155, 0, 0, 0.06);
+
+  --grain-dot: rgba(0, 0, 0, 0.04);
+
+  --saffron: #9B0000;
+  --saffron-light: #C41A1A;
+  --saffron-dark: #6B0000;
+  --terracotta: #9B0000;
+  --terracotta-light: #C41A1A;
+  --champagne-gold: #9B0000;
+  --soft-gold: #9B0000;
+
+  --ivory: #F7F4EE;
+  --cream: #FAF7F2;
+  --warm-white: #FFFFFF;
+  --mist: #EFECE6;
+  --charcoal: #1C1917;
+  --charcoal-light: #292524;
+  --charcoal-muted: #57534E;
+
+  --bg-primary: #F7F4EE;
+  --bg-secondary: #EFECE6;
+  --bg-card: #FFFFFF;
+  --bg-dark: #1C1917;
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-inverse: #FAF7F2;
+  --border-color: rgba(28, 25, 23, 0.09);
 }
 
 /* ---------- CSS Reset ---------- */
@@ -449,11 +463,26 @@ input, textarea, select {
 .gradient-hero {
   background: linear-gradient(
     135deg,
-    #0F1317 0%,
-    #161B21 35%,
-    rgba(232, 168, 56, 0.05) 70%,
-    #0F1317 100%
+    var(--bg-primary) 0%,
+    rgba(155, 0, 0, 0.10) 45%,
+    var(--bg-secondary) 75%,
+    var(--bg-primary) 100%
   );
+}
+
+/* ---------- Grain Veil Dot Overlay ---------- */
+.grain-veil-overlay {
+  position: relative;
+}
+
+.grain-veil-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-size: 18px 18px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ---------- Floating Navbar Styles ---------- */

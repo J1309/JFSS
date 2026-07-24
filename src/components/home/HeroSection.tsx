@@ -80,7 +80,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="hero gradient-hero jaali-overlay" ref={heroRef}>
+    <section className="hero gradient-hero grain-veil-overlay jaali-overlay" ref={heroRef}>
       {/* Editorial Backdrop Watermark */}
       <div className="hero-watermark" aria-hidden="true">
         JIONA
