@@ -1,0 +1,453 @@
+'use client';
+
+import { useState, useEffect, useRef, use } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import CartDrawer from '@/components/layout/CartDrawer';
+import { getProductById, products, Product } from '@/data/products';
+import { getProductImage } from '@/data/images';
+import { useStore } from '@/store/store';
+
+/* ---------- Size Guide Panel ---------- */
+function SizeGuide({ open, onClose, category }: { open: boolean; onClose: () => void; category: string }) {
+  const menSizes = [
+    { size: 'S', chest: '36"', waist: '30"', hip: '37"', length: '28"' },
+    { size: 'M', chest: '38"', waist: '32"', hip: '39"', length: '29"' },
+    { size: 'L', chest: '40"', waist: '34"', hip: '41"', length: '30"' },
+    { size: 'XL', chest: '42"', waist: '36"', hip: '43"', length: '31"' },
+    { size: 'XXL', chest: '44"', waist: '38"', hip: '45"', length: '32"' },
+  ];
+
+  const womenSizes = [
+    { size: 'XS', bust: '32"', waist: '26"', hip: '35"', length: '38"' },
+    { size: 'S', bust: '34"', waist: '28"', hip: '37"', length: '39"' },
+    { size: 'M', bust: '36"', waist: '30"', hip: '39"', length: '40"' },
+    { size: 'L', bust: '38"', waist: '32"', hip: '41"', length: '41"' },
+    { size: 'XL', bust: '40"', waist: '34"', hip: '43"', length: '42"' },
+  ];
+
+  const sizes = category === 'men' ? menSizes : womenSizes;
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <>
+          <motion.div
+            className="cart-drawer-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+          />
+          <motion.div
+            className="size-guide-panel"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-2xl)' }}>
+              <h2 className="font-display">Size Guide</h2>
+              <button className="cart-drawer-close" onClick={onClose}>✕</button>
+            </div>
+
+            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--charcoal-muted)', marginBottom: 'var(--space-xl)' }}>
+              All measurements are in inches. For the best fit, measure yourself and compare with our size chart below.
+            </p>
+
+            <table className="size-guide-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  {category === 'men' ? (
+                    <>
+                      <th>Chest</th>
+                      <th>Waist</th>
+                      <th>Hip</th>
+                      <th>Length</th>
+                    </>
+                  ) : (
+                    <>
+                      <th>Bust</th>
+                      <th>Waist</th>
+                      <th>Hip</th>
+                      <th>Length</th>
+                    </>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {sizes.map((s) => (
+                  <tr key={s.size}>
+                    <td style={{ fontWeight: 600 }}>{s.size}</td>
+                    <td>{category === 'men' ? (s as typeof menSizes[0]).chest : (s as typeof womenSizes[0]).bust}</td>
+                    <td>{s.waist}</td>
+                    <td>{s.hip}</td>
+                    <td>{s.length}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div style={{ padding: 'var(--space-xl)', background: 'var(--ivory)', borderRadius: 'var(--radius-md)', marginTop: 'var(--space-xl)' }}>
+              <h4 style={{ fontWeight: 600, marginBottom: 'var(--space-sm)' }}>How to Measure</h4>
+              <ul style={{ fontSize: 'var(--text-sm)', color: 'var(--charcoal-muted)', lineHeight: 1.8 }}>
+                <li>• <strong>Chest/Bust:</strong> Measure around the fullest part</li>
+                <li>• <strong>Waist:</strong> Measure around your natural waistline</li>
+                <li>• <strong>Hip:</strong> Measure around the widest part</li>
+                <li>• <strong>Length:</strong> Measure from shoulder to desired length</li>
+              </ul>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ---------- Product Detail Page ---------- */
+export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const product = getProductById(id);
+  const { addToCart, toggleWishlist, isWishlisted } = useStore();
+
+  const [activeColor, setActiveColor] = useState(0);
+  const [activeSize, setActiveSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+
+  const infoRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!infoRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from('.product-info > *', {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power3.out',
+        delay: 0.2,
+      });
+    }, infoRef);
+
+    return () => ctx.revert();
+  }, [id]);
+
+  if (!product) {
+    return (
+      <>
+        <Navbar />
+        <main style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ textAlign: 'center' }}>
+            <h1 className="font-display" style={{ fontSize: 'var(--text-4xl)', marginBottom: 'var(--space-xl)' }}>
+              Product Not Found
+            </h1>
+            <Link href="/shop" className="btn btn-primary">
+              Back to Shop
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  const wishlisted = isWishlisted(product.id);
+  const discount = product.originalPrice
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    : 0;
+
+  const handleAddToCart = () => {
+    if (!activeSize) {
+      return;
+    }
+    addToCart(product, product.colors[activeColor], activeSize, quantity);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 2500);
+  };
+
+  const relatedProducts = products
+    .filter((p) => p.category === product.category && p.id !== product.id)
+    .slice(0, 4);
+
+  return (
+    <>
+      <Navbar />
+      <CartDrawer />
+      <SizeGuide
+        open={sizeGuideOpen}
+        onClose={() => setSizeGuideOpen(false)}
+        category={product.category}
+      />
+
+      <main className="product-detail">
+        <div className="container">
+          {/* Breadcrumb */}
+          <div style={{ marginBottom: 'var(--space-xl)', fontSize: 'var(--text-sm)', color: 'var(--charcoal-muted)' }}>
+            <Link href="/" style={{ transition: 'color 0.2s' }}>Home</Link>
+            {' / '}
+            <Link href="/shop" style={{ transition: 'color 0.2s' }}>Shop</Link>
+            {' / '}
+            <span style={{ color: 'var(--charcoal)' }}>{product.name}</span>
+          </div>
+
+          <div className="product-detail-grid">
+            {/* Gallery */}
+            <div className="product-gallery">
+              <motion.div
+                className="product-gallery-main"
+                style={{
+                  background: `linear-gradient(135deg, ${product.colors[activeColor].hex}15, ${product.colors[activeColor].hex}40)`,
+                }}
+                key={`${activeColor}-${activeImage}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={getProductImage(product.id)}
+                  alt={product.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </motion.div>
+
+              <div className="product-gallery-thumbs">
+                {[0, 1, 2].map((i) => (
+                  <button
+                    key={i}
+                    className={`product-gallery-thumb ${i === activeImage ? 'active' : ''}`}
+                    onClick={() => setActiveImage(i)}
+                    style={{
+                      background: `linear-gradient(135deg, ${product.colors[activeColor].hex}10, ${product.colors[activeColor].hex}30)`,
+                    }}
+                  >
+                    <img
+                      src={getProductImage(product.id)}
+                      alt={`${product.name} thumbnail ${i + 1}`}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div className="product-info" ref={infoRef}>
+              <p className="product-info-overline">
+                {product.subcategory} · {product.type === 'semi-stitched' ? 'Semi-Stitched' : 'Ready-to-Wear'}
+              </p>
+
+              <h1>{product.name}</h1>
+
+              <div className="product-info-rating">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i} style={{ opacity: i < Math.round(product.rating) ? 1 : 0.3 }}>
+                    ★
+                  </span>
+                ))}
+                <span>{product.rating} ({product.reviews} reviews)</span>
+              </div>
+
+              <div className="product-info-price">
+                <span className="current">${product.price}</span>
+                {product.originalPrice && (
+                  <>
+                    <span className="original">${product.originalPrice}</span>
+                    <span className="discount">{discount}% OFF</span>
+                  </>
+                )}
+              </div>
+
+              <p className="product-info-description">{product.description}</p>
+
+              {/* Color Selection */}
+              <div className="product-option-label">
+                Color: <span>{product.colors[activeColor].name}</span>
+              </div>
+              <div className="product-colors">
+                {product.colors.map((color, i) => (
+                  <motion.div
+                    key={color.name}
+                    className={`product-color-swatch ${i === activeColor ? 'active' : ''}`}
+                    style={{ background: color.hex }}
+                    onClick={() => setActiveColor(i)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                  />
+                ))}
+              </div>
+
+              {/* Size Selection */}
+              <div className="product-option-label">
+                Size: <span>{activeSize || 'Select a size'}</span>
+              </div>
+              <div className="product-sizes">
+                {product.sizes.map((size) => (
+                  <motion.button
+                    key={size}
+                    className={`product-size-btn ${size === activeSize ? 'active' : ''}`}
+                    onClick={() => setActiveSize(size)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {size}
+                  </motion.button>
+                ))}
+              </div>
+              <button
+                className="size-guide-link"
+                onClick={() => setSizeGuideOpen(true)}
+              >
+                View Size Guide →
+              </button>
+
+              {/* Quantity */}
+              <div className="product-option-label">Quantity</div>
+              <div className="product-quantity">
+                <div className="product-quantity-controls">
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
+                  <motion.span key={quantity} initial={{ scale: 1.2 }} animate={{ scale: 1 }}>
+                    {quantity}
+                  </motion.span>
+                  <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="product-actions">
+                <motion.button
+                  className={`product-add-to-cart ${addedToCart ? 'added' : ''}`}
+                  onClick={handleAddToCart}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <AnimatePresence mode="wait">
+                    {addedToCart ? (
+                      <motion.span
+                        key="added"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                      >
+                        ✓ Added to Bag
+                      </motion.span>
+                    ) : !activeSize ? (
+                      <motion.span
+                        key="select"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                      >
+                        Select a Size
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="add"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                      >
+                        Add to Bag — ${(product.price * quantity).toFixed(2)}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+
+                <motion.button
+                  className={`product-wishlist-btn ${wishlisted ? 'active' : ''}`}
+                  onClick={() => toggleWishlist(product.id)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  {wishlisted ? '❤️' : '🤍'}
+                </motion.button>
+              </div>
+
+              {/* Meta */}
+              <div className="product-meta">
+                <div className="product-meta-item">
+                  <strong>Fabric</strong>
+                  <span>{product.fabric}</span>
+                </div>
+                <div className="product-meta-item">
+                  <strong>Type</strong>
+                  <span>{product.type === 'semi-stitched' ? 'Semi-Stitched' : 'Ready-to-Wear'}</span>
+                </div>
+                <div className="product-meta-item">
+                  <strong>Care</strong>
+                  <span>Dry clean recommended</span>
+                </div>
+                <div className="product-meta-item">
+                  <strong>Shipping</strong>
+                  <span>Free shipping on orders over $200</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Products */}
+          {relatedProducts.length > 0 && (
+            <section className="section">
+              <div className="section-header filigree-border" style={{ paddingTop: 'var(--space-2xl)' }}>
+                <span className="text-overline">You May Also Like</span>
+                <h2>Related Pieces</h2>
+              </div>
+
+              <div className="featured-scroll">
+                {relatedProducts.map((p, i) => (
+                  <RelatedCard key={p.id} product={p} index={i} />
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function RelatedCard({ product, index }: { product: Product; index: number }) {
+  return (
+    <motion.div
+      className="product-card"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Link href={`/product/${product.id}`}>
+        <div className="product-card-image">
+          <div
+            className="product-card-image-inner"
+            style={{
+              background: `linear-gradient(135deg, ${product.colors[0].hex}22, ${product.colors[0].hex}55)`,
+            }}
+          >
+            <img
+              src={getProductImage(product.id)}
+              alt={product.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+        </div>
+        <div className="product-card-info">
+          <p className="product-card-category">{product.subcategory}</p>
+          <h3 className="product-card-name">{product.name}</h3>
+          <div className="product-card-price">
+            <span className="current">${product.price}</span>
+            {product.originalPrice && <span className="original">${product.originalPrice}</span>}
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
