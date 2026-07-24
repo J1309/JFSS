@@ -71,23 +71,6 @@ export default function HeroLoopingLogo() {
         >
           JIONAFASHION
         </motion.span>
-        <motion.span
-          className="hero-logo-subtitle"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
-          EST. 2026
-        </motion.span>
-      </div>
-
-      {/* Vertical Gold Divider */}
-      <div className="hero-logo-divider" />
-
-      {/* Badge Tag */}
-      <div className="hero-logo-tag">
-        <span className="tag-dot" />
-        <span>SS 2026 COLLECTION</span>
       </div>
     </motion.div>
   );
