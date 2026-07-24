@@ -27,9 +27,7 @@ interface StoreState {
   toggleWishlist: (productId: string) => void;
   isWishlisted: (productId: string) => boolean;
 
-  /* UI & Theme */
-  theme: 'dark' | 'light';
-  toggleTheme: () => void;
+  /* UI */
   mobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
   closeMobileMenu: () => void;
@@ -109,15 +107,7 @@ export const useStore = create<StoreState>((set, get) => ({
   },
   isWishlisted: (productId) => get().wishlist.includes(productId),
 
-  /* UI & Theme */
-  theme: 'dark',
-  toggleTheme: () => {
-    const nextTheme = get().theme === 'dark' ? 'light' : 'dark';
-    if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('data-theme', nextTheme);
-    }
-    set({ theme: nextTheme });
-  },
+  /* UI */
   mobileMenuOpen: false,
   toggleMobileMenu: () => set({ mobileMenuOpen: !get().mobileMenuOpen }),
   closeMobileMenu: () => set({ mobileMenuOpen: false }),
