@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/store';
-
 import Logo from '@/components/common/Logo';
+import ThemeToggle from '@/components/common/ThemeToggle';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,6 +40,7 @@ export default function Navbar() {
         </div>
 
         <div className="navbar-actions">
+          <ThemeToggle />
           <button className="navbar-icon-btn" onClick={toggleCart} aria-label="Open cart">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
