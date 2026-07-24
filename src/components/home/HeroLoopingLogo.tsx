@@ -5,16 +5,16 @@ import { motion } from 'framer-motion';
 export default function HeroLoopingLogo() {
   return (
     <motion.div
-      className="hero-top-big-logo"
-      initial={{ opacity: 0, scale: 0.85, y: -20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ scale: 1.03, y: -2 }}
+      className="hero-looping-logo"
+      initial={{ opacity: 0, y: 25, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ scale: 1.02, y: -2 }}
     >
-      {/* Big Diamond Monogram Icon */}
-      <div className="hero-big-symbol-box">
-        <svg width="48" height="48" viewBox="0 0 36 36" fill="none">
-          {/* Diamond Outer Frame Stroke Draw */}
+      {/* Animated Diamond Monogram Symbol Box */}
+      <div className="hero-logo-symbol-box">
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+          {/* Diamond Outer Frame */}
           <motion.rect
             x="18"
             y="2"
@@ -24,10 +24,9 @@ export default function HeroLoopingLogo() {
             transform="rotate(45 18 2)"
             stroke="currentColor"
             strokeWidth="1.8"
-            className="symbol-frame-big"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            transition={{ duration: 1.1, ease: 'easeInOut' }}
           />
           {/* Stylized 'J' */}
           <motion.path
@@ -37,7 +36,7 @@ export default function HeroLoopingLogo() {
             strokeLinecap="round"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
+            transition={{ delay: 0.3, duration: 0.85, ease: 'easeOut' }}
           />
           {/* Stylized 'F' */}
           <motion.path
@@ -47,7 +46,7 @@ export default function HeroLoopingLogo() {
             strokeLinecap="round"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
-            transition={{ delay: 0.5, duration: 0.7, ease: 'easeOut' }}
+            transition={{ delay: 0.55, duration: 0.7, ease: 'easeOut' }}
           />
           {/* Lotus Dot Accent */}
           <motion.circle
@@ -57,41 +56,39 @@ export default function HeroLoopingLogo() {
             fill="var(--champagne-gold)"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.85, type: 'spring', stiffness: 450 }}
+            transition={{ delay: 0.9, type: 'spring', stiffness: 450 }}
           />
         </svg>
       </div>
 
-      {/* Big Brand Text Block */}
-      <div className="hero-big-text-group">
-        <motion.h2
-          className="hero-big-title"
-          initial={{ opacity: 0, letterSpacing: '0.4em' }}
-          animate={{ opacity: 1, letterSpacing: '0.24em' }}
-          transition={{ delay: 0.3, duration: 0.9 }}
+      {/* Brand Name Text Block */}
+      <div className="hero-logo-text-box">
+        <motion.span
+          className="hero-logo-title"
+          initial={{ opacity: 0, letterSpacing: '0.3em' }}
+          animate={{ opacity: 1, letterSpacing: '0.18em' }}
+          transition={{ delay: 0.3, duration: 0.8 }}
         >
           JIONA
-        </motion.h2>
+        </motion.span>
         <motion.span
-          className="hero-big-subtitle"
+          className="hero-logo-subtitle"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
         >
-          FASHION · MODERN DAILYWEAR
+          FASHION · EST. 2026
         </motion.span>
       </div>
 
-      {/* Pill Badge Tag */}
-      <motion.div
-        className="hero-big-tag-pill"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.75, duration: 0.6 }}
-      >
-        <span className="pill-gold-dot" />
-        <span>New Season SS 2026</span>
-      </motion.div>
+      {/* Vertical Gold Divider */}
+      <div className="hero-logo-divider" />
+
+      {/* Badge Tag */}
+      <div className="hero-logo-tag">
+        <span className="tag-dot" />
+        <span>SS 2026 COLLECTION</span>
+      </div>
     </motion.div>
   );
 }

@@ -86,14 +86,11 @@ export default function HeroSection() {
         JIONA
       </div>
 
-      {/* Upper Middle Big Logo Emblem */}
-      <div className="hero-upper-middle-header">
-        <HeroLoopingLogo />
-      </div>
-
       <div className="hero-container">
         {/* Left Side: Editorial Content */}
         <div className="hero-left">
+          <HeroLoopingLogo />
+
           <h1 className="hero-title">
             <span className="hero-title-line">Effortless Style,</span>
             <span className="hero-title-line">

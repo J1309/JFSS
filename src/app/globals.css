@@ -737,126 +737,40 @@ input, textarea, select {
   max-width: 600px;
 }
 
-/* ---------- Hero Upper-Middle Big Logo Header ---------- */
-.hero-upper-middle-header {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 1320px;
-  margin: 0 auto var(--space-2xl) auto;
-  padding: var(--space-xl) var(--space-2xl) 0 var(--space-2xl);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-top-big-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: var(--space-md);
-  padding: 24px 44px;
-  border-radius: var(--radius-xl);
-  background: rgba(110, 18, 18, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 163, 89, 0.35);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 163, 89, 0.15);
-  cursor: pointer;
-  user-select: none;
-}
-
-.hero-big-symbol-box {
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-xl);
-  background: #4A0808;
-  color: var(--champagne-gold);
-  border: 1.5px solid rgba(212, 163, 89, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(212, 163, 89, 0.25);
-}
-
-.hero-big-text-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.hero-big-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  color: var(--text-primary);
-  line-height: 1;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.hero-big-subtitle {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.36em;
-  color: var(--champagne-gold);
-  text-transform: uppercase;
-}
-
-.hero-big-tag-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 16px;
-  border-radius: var(--radius-full);
-  background: rgba(212, 163, 89, 0.15);
-  border: 1px solid rgba(212, 163, 89, 0.3);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--champagne-gold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.pill-gold-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--champagne-gold);
-  box-shadow: 0 0 8px var(--champagne-gold);
-}
-
 /* ---------- Hero Looping Logo Badge ---------- */
 .hero-looping-logo {
   display: inline-flex;
   align-items: center;
   gap: var(--space-md);
-  padding: 8px 22px 8px 10px;
+  padding: 10px 24px 10px 12px;
   border-radius: var(--radius-full);
-  background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  margin-bottom: var(--space-lg);
+  background: rgba(110, 18, 18, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 163, 89, 0.35);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), 0 0 20px rgba(212, 163, 89, 0.15);
+  margin-bottom: var(--space-xl);
   cursor: pointer;
   user-select: none;
+  transition: all var(--transition-base);
+}
+
+.hero-looping-logo:hover {
+  border-color: rgba(212, 163, 89, 0.6);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(212, 163, 89, 0.25);
 }
 
 .hero-logo-symbol-box {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-full);
-  background: var(--bg-dark);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  background: #4A0808;
+  color: var(--champagne-gold);
+  border: 1px solid rgba(212, 163, 89, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(232, 168, 56, 0.25);
+  box-shadow: 0 4px 16px rgba(212, 163, 89, 0.25);
 }
 
 .hero-logo-text-box {
@@ -867,24 +781,24 @@ input, textarea, select {
 
 .hero-logo-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--text-primary);
 }
 
 .hero-logo-subtitle {
-  font-size: 0.58rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.38em;
-  color: var(--saffron);
-  margin-top: 1px;
+  color: var(--champagne-gold);
+  margin-top: 2px;
 }
 
 .hero-logo-divider {
   width: 1px;
-  height: 24px;
-  background: var(--border-color);
+  height: 26px;
+  background: rgba(212, 163, 89, 0.3);
 }
 
 .hero-logo-tag {
@@ -895,14 +809,15 @@ input, textarea, select {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--champagne-gold);
 }
 
 .tag-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: var(--radius-full);
-  background: var(--saffron);
+  background: var(--champagne-gold);
+  box-shadow: 0 0 8px var(--champagne-gold);
 }
 
 .hero-title {
