@@ -8,45 +8,43 @@
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  /* Brand Colors — Velvet Crimson Royal System */
+  /* Brand Colors — Crimson Signature Accent System */
   --crimson: #9B0000;
   --crimson-light: #C41A1A;
-  --crimson-dark: #5C0C0C;
-  --crimson-deep: #4A0808;
-  --crimson-card: #6E1212;
-  --crimson-overlay: rgba(155, 0, 0, 0.20);
+  --crimson-dark: #6B0000;
+  --crimson-overlay: rgba(155, 0, 0, 0.05);
 
-  --grain-dot: rgba(255, 255, 255, 0.08);
+  --grain-dot: rgba(155, 0, 0, 0.04);
 
-  --saffron: #D4A359;
-  --saffron-light: #F0C46A;
-  --saffron-dark: #B88538;
-  --terracotta: #D4A359;
-  --terracotta-light: #F0C46A;
+  --saffron: #9B0000;
+  --saffron-light: #C41A1A;
+  --saffron-dark: #6B0000;
+  --terracotta: #9B0000;
+  --terracotta-light: #C41A1A;
   --champagne-gold: #D4A359;
-  --soft-gold: #D4A359;
-  --soft-gold-light: #F0C46A;
-  --mehendi-green: #6E9B66;
+  --soft-gold: #9B0000;
+  --soft-gold-light: #C41A1A;
+  --mehendi-green: #5B7052;
 
-  /* Crisp Silk Cream & White Neutrals for Text Contrast */
-  --ivory: #FAF7F2;
+  /* Airy Cashmere Sand & Linen Neutrals */
+  --ivory: #F9F6F0;
   --cream: #FAF7F2;
   --warm-white: #FFFFFF;
-  --mist: rgba(255, 255, 255, 0.12);
-  --charcoal: #FAF7F2;
-  --charcoal-light: #EFECE6;
-  --charcoal-muted: rgba(250, 247, 242, 0.80);
+  --mist: #F1ECE3;
+  --charcoal: #1C1917;
+  --charcoal-light: #292524;
+  --charcoal-muted: #57534E;
 
-  /* Functional System — Velvet Crimson Background & Silk Cream Text */
-  --bg-primary: #5C0C0C;
-  --bg-secondary: #4A0808;
-  --bg-card: #6E1212;
-  --bg-dark: #3D0505;
-  --text-primary: #FAF7F2;
-  --text-secondary: rgba(250, 247, 242, 0.82);
-  --text-inverse: #4A0808;
-  --border-color: rgba(212, 163, 89, 0.22);
-  --border-color-strong: rgba(212, 163, 89, 0.40);
+  /* Functional System — Airy Cashmere Background & Deep Espresso/Crimson Accents */
+  --bg-primary: #F9F6F0;
+  --bg-secondary: #F1ECE3;
+  --bg-card: #FFFFFF;
+  --bg-dark: #1C1917;
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-inverse: #FAF7F2;
+  --border-color: rgba(155, 0, 0, 0.12);
+  --border-color-strong: rgba(155, 0, 0, 0.28);
 
   /* Typography */
   --font-display: 'Fraunces', Georgia, serif;
@@ -340,41 +338,41 @@ input, textarea, select {
 }
 
 .btn-primary {
-  background: var(--champagne-gold);
-  color: #4A0808;
+  background: var(--crimson);
+  color: #FFFFFF;
   font-weight: 700;
 }
 
 .btn-primary:hover {
-  background: #FAF7F2;
-  color: #4A0808;
+  background: var(--crimson-light);
+  color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(212, 163, 89, 0.45);
+  box-shadow: 0 8px 28px rgba(155, 0, 0, 0.35);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(155, 0, 0, 0.05);
   color: var(--text-primary);
-  border: 1.5px solid rgba(212, 163, 89, 0.35);
+  border: 1.5px solid rgba(155, 0, 0, 0.22);
 }
 
 .btn-secondary:hover {
-  background: var(--champagne-gold);
-  color: #4A0808;
-  border-color: var(--champagne-gold);
+  background: var(--crimson);
+  color: #FFFFFF;
+  border-color: var(--crimson);
   transform: translateY(-2px);
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, #D4A359, #F0C46A);
-  color: #4A0808;
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
+  color: #FFFFFF;
   font-weight: 700;
 }
 
 .btn-gold:hover {
-  background: linear-gradient(135deg, #F0C46A, #D4A359);
+  background: linear-gradient(135deg, var(--crimson-light), var(--crimson));
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(212, 163, 89, 0.5);
+  box-shadow: 0 0 30px rgba(155, 0, 0, 0.4);
 }
 
 .btn-sm {
@@ -395,11 +393,11 @@ input, textarea, select {
   overflow: hidden;
   transition: all var(--transition-base);
   color: var(--text-primary);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(44, 44, 44, 0.06);
 }
 
 .card:hover {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 163, 89, 0.2);
+  box-shadow: 0 16px 40px rgba(155, 0, 0, 0.12);
   border-color: var(--border-color-strong);
   transform: translateY(-4px);
 }
@@ -426,10 +424,10 @@ input, textarea, select {
 .gradient-hero {
   background: linear-gradient(
     135deg,
-    #5C0C0C 0%,
-    #4A0808 45%,
-    #6E1212 75%,
-    #5C0C0C 100%
+    #F9F6F0 0%,
+    rgba(155, 0, 0, 0.06) 45%,
+    #F1ECE3 75%,
+    #F9F6F0 100%
   );
 }
 
@@ -442,7 +440,7 @@ input, textarea, select {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);
+  background-image: radial-gradient(rgba(155, 0, 0, 0.04) 1px, transparent 0);
   background-size: 18px 18px;
   pointer-events: none;
   z-index: 1;
@@ -470,11 +468,11 @@ input, textarea, select {
   height: 66px;
   padding: 0 var(--space-xl);
   border-radius: var(--radius-full);
-  background: rgba(92, 12, 12, 0.90);
+  background: rgba(249, 246, 240, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(212, 163, 89, 0.30);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(155, 0, 0, 0.15);
+  box-shadow: 0 16px 40px rgba(28, 25, 23, 0.08), 0 4px 12px rgba(155, 0, 0, 0.04);
 }
 
 /* ---------- Brand Logo Component ---------- */
