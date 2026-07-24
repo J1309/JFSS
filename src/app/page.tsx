@@ -7,8 +7,6 @@ import HeroSection from '@/components/home/HeroSection';
 import CollectionsGrid from '@/components/home/CollectionsGrid';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import BrandStory from '@/components/home/BrandStory';
-import Testimonials from '@/components/home/Testimonials';
-import Newsletter from '@/components/home/Newsletter';
 
 export default function Home() {
   return (
@@ -20,8 +18,6 @@ export default function Home() {
         <CollectionsGrid />
         <FeaturedProducts />
         <BrandStory />
-        <Testimonials />
-        <Newsletter />
       </main>
       <Footer />
     </>
