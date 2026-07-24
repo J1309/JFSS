@@ -8,44 +8,41 @@
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  /* Brand Colors — Premium Unisex Palette (Terracotta, Cashmere & Espresso) */
-  --terracotta: #A34828;
-  --terracotta-light: #C06140;
-  --terracotta-dark: #80341B;
-  --terracotta-rgb: 163, 72, 40;
-
-  --champagne-gold: #C5A059;
-  --champagne-gold-light: #DBB875;
-  --olive-sage: #5B7052;
-  --royal-indigo: #2D3A54;
-
-  --saffron: #A34828;
-  --saffron-light: #C06140;
-  --saffron-dark: #80341B;
-  --soft-gold: #C5A059;
-  --soft-gold-light: #DBB875;
+  /* Brand Colors — High-Fashion Dark Mode System */
+  --saffron: #E8A838;
+  --saffron-light: #F0C46A;
+  --saffron-dark: #C88A1C;
+  --terracotta: #C85A32;
+  --terracotta-light: #E0734C;
+  --champagne-gold: #E8A838;
+  --soft-gold: #E8A838;
+  --soft-gold-light: #F0C46A;
   --mehendi-green: #5B7052;
 
-  /* Neutrals — Cashmere Sand & Espresso Charcoal */
-  --ivory: #F7F4EE;
-  --ivory-rgb: 247, 244, 238;
-  --cream: #FAF7F2;
-  --warm-white: #FFFFFF;
-  --mist: #EFECE6;
-  --charcoal: #1C1917;
-  --charcoal-light: #292524;
-  --charcoal-muted: #57534E;
+  /* Dark Obsidian Neutrals */
+  --obsidian-dark: #0F1317;
+  --obsidian-base: #161B21;
+  --obsidian-card: #1C222A;
+  --obsidian-border: rgba(255, 255, 255, 0.12);
 
-  /* Functional System */
-  --bg-primary: #F7F4EE;
-  --bg-secondary: #EFECE6;
-  --bg-card: #FFFFFF;
-  --bg-dark: #1C1917;
-  --text-primary: #1C1917;
-  --text-secondary: #57534E;
-  --text-inverse: #FAF7F2;
-  --border-color: rgba(28, 25, 23, 0.09);
-  --border-color-strong: rgba(28, 25, 23, 0.18);
+  --ivory: #FAF7F2;
+  --cream: #1C222A;
+  --warm-white: #0F1317;
+  --mist: rgba(255, 255, 255, 0.08);
+  --charcoal: #FAF7F2;
+  --charcoal-light: #EFECE6;
+  --charcoal-muted: rgba(250, 247, 242, 0.72);
+
+  /* Functional Dark Mode System */
+  --bg-primary: #0F1317;
+  --bg-secondary: #161B21;
+  --bg-card: #1C222A;
+  --bg-dark: #0A0D10;
+  --text-primary: #FAF7F2;
+  --text-secondary: rgba(250, 247, 242, 0.72);
+  --text-inverse: #0F1317;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-color-strong: rgba(255, 255, 255, 0.25);
 
   /* Typography */
   --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
@@ -335,41 +332,41 @@ input, textarea, select {
 }
 
 .btn-primary {
-  background: #1C1917;
-  color: #F7F4EE;
+  background: var(--saffron);
+  color: #0F1317;
   font-weight: 700;
 }
 
 .btn-primary:hover {
-  background: #A34828;
-  color: #FFFFFF;
+  background: var(--saffron-light);
+  color: #0F1317;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(163, 72, 40, 0.28);
+  box-shadow: 0 8px 28px rgba(232, 168, 56, 0.35);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.6);
-  color: #1C1917;
-  border: 1.5px solid rgba(28, 25, 23, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+  color: #FAF7F2;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
 }
 
 .btn-secondary:hover {
-  background: #1C1917;
-  color: #F7F4EE;
-  border-color: #1C1917;
+  background: #FAF7F2;
+  color: #0F1317;
+  border-color: #FAF7F2;
   transform: translateY(-2px);
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, #A34828, #C06140);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--saffron), #F0C46A);
+  color: #0F1317;
   font-weight: 700;
 }
 
 .btn-gold:hover {
-  background: linear-gradient(135deg, #C06140, #A34828);
+  background: linear-gradient(135deg, #F0C46A, var(--saffron));
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(163, 72, 40, 0.35);
+  box-shadow: 0 0 30px rgba(232, 168, 56, 0.4);
 }
 
 .btn-sm {
@@ -384,18 +381,18 @@ input, textarea, select {
 
 /* ---------- Card Base ---------- */
 .card {
-  background: #FFFFFF;
-  border: 1px solid rgba(28, 25, 23, 0.08);
+  background: #1C222A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-base);
-  color: #1C1917;
-  box-shadow: 0 8px 24px rgba(28, 25, 23, 0.04);
+  color: #FAF7F2;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover {
-  box-shadow: 0 16px 40px rgba(28, 25, 23, 0.1);
-  border-color: rgba(28, 25, 23, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-4px);
 }
 
@@ -403,28 +400,28 @@ input, textarea, select {
 .gradient-ethnic {
   background: linear-gradient(
     135deg,
-    #F7F4EE 0%,
-    #EFECE6 50%,
-    #F7F4EE 100%
+    #0F1317 0%,
+    #161B21 50%,
+    #0F1317 100%
   );
 }
 
 .gradient-dark {
   background: linear-gradient(
     135deg,
-    #1C1917 0%,
-    #12100F 50%,
-    #292524 100%
+    #0A0D10 0%,
+    #0F1317 50%,
+    #161B21 100%
   );
 }
 
 .gradient-hero {
   background: linear-gradient(
     135deg,
-    #F7F4EE 0%,
-    #EFECE6 35%,
-    rgba(163, 72, 40, 0.04) 70%,
-    #F7F4EE 100%
+    #0F1317 0%,
+    #161B21 35%,
+    rgba(232, 168, 56, 0.05) 70%,
+    #0F1317 100%
   );
 }
 
@@ -450,11 +447,11 @@ input, textarea, select {
   height: 66px;
   padding: 0 var(--space-xl);
   border-radius: var(--radius-full);
-  background: rgba(247, 244, 238, 0.88);
+  background: rgba(15, 19, 23, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 16px 40px rgba(28, 25, 23, 0.12), 0 4px 12px rgba(28, 25, 23, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ---------- Brand Logo Component ---------- */
@@ -704,11 +701,11 @@ input, textarea, select {
   gap: var(--space-md);
   padding: 8px 22px 8px 10px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(28, 34, 42, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(28, 25, 23, 0.12);
-  box-shadow: 0 8px 30px rgba(28, 25, 23, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   margin-bottom: var(--space-lg);
   cursor: pointer;
   user-select: none;
@@ -718,12 +715,13 @@ input, textarea, select {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
-  background: #1C1917;
+  background: #0F1317;
   color: #FAF7F2;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(163, 72, 40, 0.25);
+  box-shadow: 0 4px 14px rgba(232, 168, 56, 0.25);
 }
 
 .hero-logo-text-box {
@@ -737,21 +735,21 @@ input, textarea, select {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: #1C1917;
+  color: #FAF7F2;
 }
 
 .hero-logo-subtitle {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.38em;
-  color: var(--terracotta);
+  color: var(--saffron);
   margin-top: 1px;
 }
 
 .hero-logo-divider {
   width: 1px;
   height: 24px;
-  background: rgba(28, 25, 23, 0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .hero-logo-tag {
@@ -762,14 +760,14 @@ input, textarea, select {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #1C1917;
+  color: #FAF7F2;
 }
 
 .tag-dot {
   width: 6px;
   height: 6px;
   border-radius: var(--radius-full);
-  background: var(--terracotta);
+  background: var(--saffron);
 }
 
 .hero-title {
@@ -2547,10 +2545,10 @@ input, textarea, select {
 
 /* ---------- Glass Card ---------- */
 .glass-card {
-  background: rgba(250, 247, 240, 0.6);
+  background: rgba(28, 34, 42, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(201, 169, 110, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-lg);
 }
 
@@ -2562,8 +2560,8 @@ input, textarea, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F7F4EE;
-  color: #1C1917;
+  background: #0F1317;
+  color: #FAF7F2;
   overflow: hidden;
 }
 
@@ -2582,9 +2580,10 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-xl);
-  background: rgba(28, 25, 23, 0.04);
-  box-shadow: 0 10px 30px rgba(28, 25, 23, 0.08);
-  color: #1C1917;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  color: #FAF7F2;
 }
 
 .preloader-text-group {
@@ -2599,7 +2598,7 @@ input, textarea, select {
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 700;
   letter-spacing: 0.22em;
-  color: #1C1917;
+  color: #FAF7F2;
   line-height: 1;
 }
 
@@ -2608,13 +2607,13 @@ input, textarea, select {
   font-weight: 700;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--terracotta);
+  color: var(--saffron);
 }
 
 .preloader-progress-track {
   width: 140px;
   height: 2px;
-  background: rgba(28, 25, 23, 0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 2px;
   overflow: hidden;
   margin-top: var(--space-xs);
@@ -2622,6 +2621,6 @@ input, textarea, select {
 
 .preloader-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--terracotta), var(--champagne-gold));
+  background: linear-gradient(90deg, var(--saffron), #F0C46A);
   border-radius: 2px;
 }

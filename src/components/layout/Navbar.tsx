@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
-        <Logo onClick={closeMobileMenu} size="md" />
+        <Logo onClick={closeMobileMenu} size="md" showText={false} />
 
         <div className="navbar-links">
           {navLinks.map((link) => (

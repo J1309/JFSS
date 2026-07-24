@@ -4,15 +4,22 @@ import Link from 'next/link';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
+  showText?: boolean;
   showSubtitle?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
-export default function Logo({ size = 'md', showSubtitle = true, className = '', onClick }: LogoProps) {
+export default function Logo({
+  size = 'md',
+  showText = true,
+  showSubtitle = true,
+  className = '',
+  onClick,
+}: LogoProps) {
   const iconSizes = {
     sm: { box: 32, svg: 20 },
-    md: { box: 38, svg: 24 },
+    md: { box: 40, svg: 25 },
     lg: { box: 48, svg: 30 },
   };
 
@@ -58,17 +65,17 @@ export default function Logo({ size = 'md', showSubtitle = true, className = '',
             className="symbol-f"
           />
           {/* Lotus Dot Accent */}
-          <circle cx="18" cy="8" r="1.5" fill="var(--terracotta)" />
+          <circle cx="18" cy="8" r="1.5" fill="var(--saffron)" />
         </svg>
       </div>
 
-      {/* Brand Text Block */}
-      <div className="logo-text-group">
-        <span className="logo-title">
-          JIONA
-        </span>
-        {showSubtitle && <span className="logo-subtitle">FASHION</span>}
-      </div>
+      {/* Brand Text Block (Optional) */}
+      {showText && (
+        <div className="logo-text-group">
+          <span className="logo-title">JIONA</span>
+          {showSubtitle && <span className="logo-subtitle">FASHION</span>}
+        </div>
+      )}
     </Link>
   );
 }
