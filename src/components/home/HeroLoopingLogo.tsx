@@ -2,19 +2,22 @@
 
 import { motion } from 'framer-motion';
 
+/**
+ * Hero logo showpiece — the animated diamond monogram draws itself, then the
+ * JIONAFASHION wordmark settles beneath it. Shares the draw-in motif with the
+ * site Preloader so the brand mark stays memorable. (Preloader itself untouched.)
+ */
 export default function HeroLoopingLogo() {
   return (
-    <motion.div
-      className="hero-looping-logo hero-looping-logo-big"
-      initial={{ opacity: 0, y: 25, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ scale: 1.03, y: -2 }}
-    >
-      {/* Animated Diamond Monogram Symbol Box */}
-      <div className="hero-logo-symbol-box">
-        <svg width="42" height="42" viewBox="0 0 36 36" fill="none">
-          {/* Diamond Outer Frame */}
+    <div className="jf-logo-stage">
+      <motion.div
+        className="jf-logo-mark"
+        initial={{ scale: 0.6, opacity: 0, rotate: -12 }}
+        animate={{ scale: 1, opacity: 1, rotate: 0 }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        whileHover={{ rotate: 4, scale: 1.04 }}
+      >
+        <svg width="52" height="52" viewBox="0 0 36 36" fill="none">
           <motion.rect
             x="18"
             y="2"
@@ -28,7 +31,6 @@ export default function HeroLoopingLogo() {
             animate={{ pathLength: 1 }}
             transition={{ duration: 1.1, ease: 'easeInOut' }}
           />
-          {/* Stylized 'J' */}
           <motion.path
             d="M21 11V21C21 23.5 19 25 16.5 25C14.5 25 13 23.8 13 22"
             stroke="currentColor"
@@ -38,7 +40,6 @@ export default function HeroLoopingLogo() {
             animate={{ pathLength: 1 }}
             transition={{ delay: 0.3, duration: 0.85, ease: 'easeOut' }}
           />
-          {/* Stylized 'F' */}
           <motion.path
             d="M14 12.5H23M14 17.5H20.5"
             stroke="currentColor"
@@ -48,7 +49,6 @@ export default function HeroLoopingLogo() {
             animate={{ pathLength: 1 }}
             transition={{ delay: 0.55, duration: 0.7, ease: 'easeOut' }}
           />
-          {/* Lotus Dot Accent */}
           <motion.circle
             cx="18"
             cy="8"
@@ -56,22 +56,19 @@ export default function HeroLoopingLogo() {
             fill="var(--crimson)"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.9, type: 'spring', stiffness: 450 }}
+            transition={{ delay: 0.95, type: 'spring', stiffness: 450 }}
           />
         </svg>
-      </div>
+      </motion.div>
 
-      {/* Brand Name Text Block */}
-      <div className="hero-logo-text-box">
-        <motion.span
-          className="hero-logo-title"
-          initial={{ opacity: 0, letterSpacing: '0.3em' }}
-          animate={{ opacity: 1, letterSpacing: '0.20em' }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          JIONAFASHION
-        </motion.span>
-      </div>
-    </motion.div>
+      <motion.div
+        className="jf-logo-wordmark"
+        initial={{ opacity: 0, y: 12, letterSpacing: '0.32em' }}
+        animate={{ opacity: 1, y: 0, letterSpacing: '0.16em' }}
+        transition={{ delay: 0.35, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        JIONA<span className="accent">FASHION</span>
+      </motion.div>
+    </div>
   );
 }

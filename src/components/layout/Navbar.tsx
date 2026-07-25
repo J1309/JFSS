@@ -8,14 +8,24 @@ import Logo from '@/components/common/Logo';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [fill, setFill] = useState(0);
   const { cartCount, toggleCart, mobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useStore();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      // Scroll progress 0 → 1 across the whole page; drives the crimson wave.
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setFill(max > 0 ? Math.min(Math.max(y / max, 0), 1) : 0);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const navLinks = [
@@ -27,7 +37,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
+      <nav
+        className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}
+        style={{ '--nav-fill': fill } as React.CSSProperties}
+      >
         <Logo onClick={closeMobileMenu} size="md" showText={false} />
 
         <div className="navbar-links">

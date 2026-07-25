@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
@@ -11,44 +11,24 @@ import { useStore } from '@/store/store';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ProductCard({ product, index }: { product: Product; index: number }) {
+function EditCard({ product }: { product: Product }) {
   const { toggleWishlist, isWishlisted } = useStore();
-  const [activeColor, setActiveColor] = useState(0);
   const wishlisted = isWishlisted(product.id);
 
   return (
-    <motion.div
-      className="product-card"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-    >
+    <div className="jf-edit-card">
       <Link href={`/product/${product.id}`}>
-        <div className="product-card-image">
-          <div
-            className="product-card-image-inner"
-            style={{
-              background: `linear-gradient(135deg, ${product.colors[activeColor].hex}22, ${product.colors[activeColor].hex}55)`,
-            }}
-          >
-            <img src={getProductImage(product.id)} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
-
-          {product.new && <span className="product-card-badge badge-new">New</span>}
-          {product.originalPrice && <span className="product-card-badge badge-sale" style={{ top: product.new ? '48px' : undefined }}>Sale</span>}
-          {product.bestSeller && !product.new && <span className="product-card-badge badge-bestseller">Bestseller</span>}
-
-          <div className="product-card-quick-add">
-            <button className="btn btn-primary btn-sm" style={{ width: '100%' }}>
-              Quick View
-            </button>
-          </div>
+        <div className="jf-edit-media">
+          <img src={getProductImage(product.id)} alt={product.name} loading="lazy" />
+          {product.new ? (
+            <span className="jf-rcard-badge jf-badge-new">New</span>
+          ) : product.bestSeller ? (
+            <span className="jf-rcard-badge jf-badge-best">★ Bestseller</span>
+          ) : null}
         </div>
       </Link>
-
       <button
-        className={`product-card-wishlist ${wishlisted ? 'active' : ''}`}
+        className="jf-edit-fav"
         onClick={(e) => {
           e.preventDefault();
           toggleWishlist(product.id);
@@ -57,30 +37,15 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       >
         {wishlisted ? '❤️' : '🤍'}
       </button>
-
-      <div className="product-card-info">
-        <p className="product-card-category">{product.subcategory}</p>
-        <h3 className="product-card-name">{product.name}</h3>
-        <div className="product-card-price">
-          <span className="current">${product.price}</span>
-          {product.originalPrice && (
-            <span className="original">${product.originalPrice}</span>
-          )}
+      <Link href={`/product/${product.id}`}>
+        <p className="jf-edit-cat">{product.subcategory}</p>
+        <h3 className="jf-edit-name">{product.name}</h3>
+        <div className="jf-edit-price">
+          <span className="now">${product.price}</span>
+          {product.originalPrice && <span className="was">${product.originalPrice}</span>}
         </div>
-        <div className="product-card-colors">
-          {product.colors.map((color, i) => (
-            <motion.div
-              key={color.name}
-              className={`color-dot ${i === activeColor ? 'active' : ''}`}
-              style={{ background: color.hex }}
-              onClick={() => setActiveColor(i)}
-              whileHover={{ scale: 1.3 }}
-              whileTap={{ scale: 0.9 }}
-            />
-          ))}
-        </div>
-      </div>
-    </motion.div>
+      </Link>
+    </div>
   );
 }
 
@@ -90,17 +55,15 @@ export default function FeaturedProducts() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
-      gsap.from('.featured-header', {
-        y: 40,
+      gsap.from('.jf-edit .jf-head', {
+        y: 32,
         opacity: 0,
         duration: 0.8,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
       });
     }, sectionRef);
 
@@ -108,24 +71,25 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <section className="section" ref={sectionRef} style={{ background: 'var(--bg-primary)' }}>
+    <section className="jf-edit" ref={sectionRef}>
       <div className="container">
-        <div className="section-header featured-header">
-          <span className="text-overline">Everyday Staples</span>
-          <h2>Featured Dailywear</h2>
-          <p>Handpicked comfortable cottons and breezy linens for everyday style</p>
+        <div className="jf-collections-head">
+          <div className="jf-head">
+            <span className="jf-eyebrow">Everyday Staples</span>
+            <h2 className="jf-h2">
+              The <span className="accent">Edit</span>
+            </h2>
+            <p className="jf-lede">Handpicked cottons and breezy linens, ready to wear straight from the rail.</p>
+          </div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            <Link href="/shop" className="jf-btn jf-btn-ghost">View all pieces</Link>
+          </motion.div>
         </div>
 
-        <div className="featured-scroll">
-          {featured.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+        <div className="jf-edit-rail">
+          {featured.map((product) => (
+            <EditCard key={product.id} product={product} />
           ))}
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: 'var(--space-2xl)' }}>
-          <Link href="/shop" className="btn btn-secondary">
-            View All Pieces
-          </Link>
         </div>
       </div>
     </section>

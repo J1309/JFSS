@@ -23,6 +23,7 @@ export interface Product {
   featured: boolean;
   new: boolean;
   bestSeller: boolean;
+  clearance?: boolean;
   rating: number;
   reviews: number;
 }
@@ -51,6 +52,7 @@ export const products: Product[] = [
     featured: true,
     new: true,
     bestSeller: true,
+    clearance: true,
     rating: 4.9,
     reviews: 210,
   },
@@ -77,6 +79,7 @@ export const products: Product[] = [
     featured: true,
     new: true,
     bestSeller: false,
+    clearance: true,
     rating: 4.8,
     reviews: 145,
   },
@@ -128,6 +131,7 @@ export const products: Product[] = [
     featured: true,
     new: true,
     bestSeller: false,
+    clearance: true,
     rating: 4.7,
     reviews: 94,
   },
@@ -204,6 +208,7 @@ export const products: Product[] = [
     featured: true,
     new: false,
     bestSeller: true,
+    clearance: true,
     rating: 4.8,
     reviews: 195,
   },
@@ -279,6 +284,7 @@ export const products: Product[] = [
     featured: false,
     new: false,
     bestSeller: true,
+    clearance: true,
     rating: 4.8,
     reviews: 245,
   },
@@ -312,6 +318,7 @@ export const products: Product[] = [
     name: 'Chanderi Dailywear Co-Ord Set',
     slug: 'chanderi-dailywear-coord-set',
     price: 72,
+    originalPrice: 90,
     description: 'A chic contemporary 2-piece set featuring a high-low tunic and straight cotton trousers in breathable Chanderi weave. Subtle piping details give it a polished touch.',
     shortDescription: 'High-low tunic & trouser co-ord set',
     category: 'women',
@@ -328,6 +335,7 @@ export const products: Product[] = [
     featured: true,
     new: true,
     bestSeller: false,
+    clearance: true,
     rating: 4.7,
     reviews: 64,
   },
@@ -413,4 +421,16 @@ export function getFeaturedProducts(): Product[] {
 
 export function getProductsByCategory(category: 'men' | 'women'): Product[] {
   return products.filter(p => p.category === category);
+}
+
+export function getClearanceProducts(): Product[] {
+  // Only genuine markdowns qualify — a clearance flag plus a real original price.
+  return products
+    .filter(p => p.clearance && p.originalPrice && p.originalPrice > p.price)
+    .sort((a, b) => discountPercent(b) - discountPercent(a));
+}
+
+export function discountPercent(p: Product): number {
+  if (!p.originalPrice || p.originalPrice <= p.price) return 0;
+  return Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100);
 }

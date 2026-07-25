@@ -20,19 +20,30 @@ export default function CollectionsGrid() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
-      gsap.from('.collection-card', {
-        y: 60,
+      gsap.from('.jf-col-card', {
+        y: 56,
         opacity: 0,
         duration: 0.8,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-          toggleActions: 'play none none none',
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 72%' },
+      });
+
+      // Parallax the card backgrounds via background-position (keeps the
+      // hover-scale transform on the same element untouched).
+      gsap.utils.toArray<HTMLElement>('.jf-col-bg').forEach((bg) => {
+        gsap.fromTo(
+          bg,
+          { backgroundPosition: '50% 22%' },
+          {
+            backgroundPosition: '50% 78%',
+            ease: 'none',
+            scrollTrigger: { trigger: bg, scrub: true, start: 'top bottom', end: 'bottom top' },
+          }
+        );
       });
     }, sectionRef);
 
@@ -40,34 +51,41 @@ export default function CollectionsGrid() {
   }, []);
 
   return (
-    <section className="section paisley-bg" ref={sectionRef}>
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="section-header">
-          <span className="text-overline">Casual Wardrobe</span>
-          <h2>Explore Daily Collections</h2>
-          <p>From office hours to weekend coffee runs — effortless South Asian dailywear</p>
+    <section className="jf-collections" ref={sectionRef}>
+      <div className="container">
+        <div className="jf-collections-head">
+          <div className="jf-head">
+            <span className="jf-eyebrow">Casual Wardrobe</span>
+            <h2 className="jf-h2">
+              Four ways to dress <span className="accent">every day</span>
+            </h2>
+          </div>
+          <Link href="/shop" className="jf-collections-viewall">
+            View all collections
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
 
-        <div className="collections-grid">
+        <div className="jf-collections-grid">
           {collections.map((col, i) => (
-            <Link
-              key={col.id}
-              href={`/shop?category=${col.id}`}
-              className="collection-card"
-            >
+            <Link key={col.id} href={`/shop?category=${col.id}`} className="jf-col-card">
               <div
-                className="collection-card-bg"
-                style={{
-                  backgroundImage: `url(${collectionImages[i]})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
+                className="jf-col-bg"
+                style={{ backgroundImage: `url(${collectionImages[i]})` }}
               />
-              <div className="collection-card-overlay" />
-              <div className="collection-card-content">
-                <span className="text-overline">{col.subtitle}</span>
-                <h3>{col.title}</h3>
-                <p>{col.description}</p>
+              <div className="jf-col-content">
+                <span className="jf-col-index">{String(i + 1).padStart(2, '0')} / 04</span>
+                <span className="jf-col-sub">{col.subtitle}</span>
+                <h3 className="jf-col-title">{col.title}</h3>
+                <p className="jf-col-desc">{col.description}</p>
+                <span className="jf-col-go">
+                  Explore
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
               </div>
             </Link>
           ))}

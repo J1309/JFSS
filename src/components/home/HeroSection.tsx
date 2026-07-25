@@ -2,118 +2,68 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Link from 'next/link';
 import HeroLoopingLogo from './HeroLoopingLogo';
 import HeroRoulette from './HeroRoulette';
 
 export default function HeroSection() {
-  const heroRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!heroRef.current) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      tl.from('.hero-looping-logo', {
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        delay: 0.2,
-      })
-        .from(
-          '.hero-title-line',
-          {
-            y: 70,
-            opacity: 0,
-            duration: 0.9,
-            stagger: 0.12,
-          },
-          '-=0.4'
-        )
-        .from(
-          '.hero-subtitle',
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-          },
-          '-=0.5'
-        )
-        .from(
-          '.hero-cta',
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.7,
-          },
-          '-=0.4'
-        )
-        .from(
-          '.hero-right-roulette',
-          {
-            opacity: 0,
-            x: 50,
-            duration: 1,
-          },
-          '-=0.8'
-        )
-        .from(
-          '.hero-scroll-indicator',
-          {
-            opacity: 0,
-            duration: 0.6,
-          },
-          '-=0.2'
-        );
+      gsap
+        .timeline({ defaults: { ease: 'power3.out' } })
+        .from('.jf-logo-stage', { y: 16, opacity: 0, duration: 0.7, delay: 0.3 })
+        .from('.jf-hero-title', { y: 30, opacity: 0, duration: 0.9 }, '-=0.2')
+        .from('.jf-hero-sub', { y: 20, opacity: 0, duration: 0.7 }, '-=0.5')
+        .from('.jf-hero-cta', { y: 18, opacity: 0, duration: 0.6 }, '-=0.4')
+        .from('.jf-hero-stage', { x: 44, opacity: 0, duration: 1 }, '-=0.7');
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="hero gradient-hero grain-veil-overlay jaali-overlay" ref={heroRef}>
-      {/* Editorial Backdrop Watermark */}
-      <div className="hero-watermark" aria-hidden="true">
-        JIONA
-      </div>
-
-      <div className="hero-container">
-        {/* Left Side: Editorial Content */}
-        <div className="hero-left">
+    <section className="jf-hero" ref={heroRef}>
+      <div className="jf-hero-split">
+        {/* Left: animated logo + the sentence content */}
+        <div className="jf-hero-copy">
           <HeroLoopingLogo />
 
-          <h1 className="hero-title">
-            <span className="hero-title-line">Effortless Style,</span>
-            <span className="hero-title-line">
-              Everyday <em>Comfort</em>
-            </span>
+          <h1 className="jf-hero-title">
+            Comfort, <span className="accent">worn every day.</span>
           </h1>
 
-          <p className="hero-subtitle">
-            Breathable organic cotton kurtis, breezy short kurtas & relaxed lounge sets.
-            South Asian comfort reimagined for your daily wardrobe.
+          <p className="jf-hero-sub">
+            Breathable organic cottons, breezy short kurtas and relaxed co-ords —
+            South Asian dailywear, reimagined for how you actually live.
           </p>
 
-          <div className="hero-cta">
-            <a href="/shop" className="btn btn-primary btn-lg">
-              Shop Dailywear
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="jf-hero-cta">
+            <Link href="/shop" className="jf-btn jf-btn-primary">
+              Shop the edit
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
+            <Link href="/shop?category=women" className="jf-btn jf-btn-ghost">
+              New in
+            </Link>
           </div>
         </div>
 
-        {/* Right Side: Product Roulette */}
-        <div className="hero-right-roulette">
+        {/* Right: auto-rotating product carousel with horizontal slide */}
+        <div className="jf-hero-stage">
           <HeroRoulette />
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="hero-scroll-indicator">
-        <span>Scroll Collection</span>
-        <div className="scroll-line" />
+      <div className="jf-hero-scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <i />
       </div>
     </section>
   );

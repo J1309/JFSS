@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -11,92 +12,65 @@ export default function BrandStory() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none none',
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
       });
-
-      tl.from('.brand-story-text h2', {
-        y: 60,
+      tl.from('.jf-story-text > *', {
+        y: 40,
         opacity: 0,
-        duration: 1,
+        duration: 0.8,
+        stagger: 0.12,
         ease: 'power3.out',
-      })
-        .from(
-          '.brand-story-text p',
-          {
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out',
-          },
-          '-=0.5'
-        )
-        .from(
-          '.brand-story-text .btn',
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-          },
-          '-=0.3'
-        )
-        .from(
-          '.brand-story-image',
-          {
-            x: 60,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out',
-          },
-          '-=0.8'
-        );
+      }).from('.jf-story-figure', { x: 48, opacity: 0, duration: 1, ease: 'power3.out' }, '-=0.7');
+
+      // Parallax: the image drifts within its frame as the section scrolls past.
+      // scale 1.12 gives overflow room so the ±6% travel never reveals an edge.
+      gsap.fromTo(
+        '.jf-story-figure img',
+        { yPercent: -6, scale: 1.12 },
+        {
+          yPercent: 6,
+          scale: 1.12,
+          ease: 'none',
+          scrollTrigger: { trigger: '.jf-story-figure', scrub: true, start: 'top bottom', end: 'bottom top' },
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="section brand-story jaali-overlay" ref={sectionRef}>
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="brand-story-grid">
-          <div className="brand-story-text">
-            <span className="text-overline" style={{ display: 'block', marginBottom: 'var(--space-lg)' }}>
-              The Jiona Story
-            </span>
+    <section className="jf-story" ref={sectionRef}>
+      <div className="container">
+        <div className="jf-story-grid">
+          <div className="jf-story-text">
+            <span className="jf-eyebrow">The Jiona Story</span>
             <h2>
-              Everyday <em>Comfort</em>,<br />
-              Artisanal <em>Craft</em>
+              Everyday <span className="accent">comfort</span>, artisanal craft
             </h2>
             <p>
-              At JionaFashion, we believe that South Asian clothing should feel as good as it looks — every single day. We replace heavy, restrictive garments with breathable organic cottons, slub linens, and easy-breezy silhouettes.
+              We believe South Asian clothing should feel as good as it looks — every
+              single day. So we trade heavy, restrictive garments for breathable organic
+              cottons, slub linens and easy silhouettes that move with you.
             </p>
             <p>
-              We collaborate with traditional block-printers and chikankari artisans across Jaipur and Lucknow to bring you lightweight dailywear that moves effortlessly with your lifestyle.
+              Each piece is made with block-printers and chikankari artisans across Jaipur
+              and Lucknow — lightweight dailywear that carries a little heritage into your
+              ordinary mornings.
             </p>
-            <a href="/shop" className="btn btn-gold" style={{ marginTop: 'var(--space-md)' }}>
-              Explore Dailywear Fabrics
-            </a>
+            <Link href="/shop" className="jf-btn jf-btn-primary" style={{ marginTop: 'var(--space-sm)' }}>
+              Explore our fabrics
+            </Link>
           </div>
 
-          <div className="brand-story-image">
-            <img
-              src="/images/brand-story.png"
-              alt="Artisan weaving organic cotton dailywear fabric"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: 'var(--radius-lg)',
-              }}
-            />
-          </div>
+          <figure className="jf-story-figure">
+            <img src="/images/brand-story.png" alt="Artisan weaving organic cotton dailywear fabric on a handloom" />
+            <figcaption>Handwoven in Jaipur</figcaption>
+          </figure>
         </div>
       </div>
     </section>

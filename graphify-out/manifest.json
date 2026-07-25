@@ -1,0 +1,247 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1784924032.677106,
+    "ast_hash": "969f2287e93f17e66f69b6f7a2673d74",
+    "semantic_hash": "969f2287e93f17e66f69b6f7a2673d74"
+  },
+  "eslint.config.mjs": {
+    "mtime": 1784836526.873928,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "next.config.ts": {
+    "mtime": 1784836527.622132,
+    "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
+    "semantic_hash": "9b77af189a21a7a64e4bd7a426f64176"
+  },
+  "package.json": {
+    "mtime": 1784836976.6756968,
+    "ast_hash": "faefcd5e2e98334246e06eee7bc5fbd4",
+    "semantic_hash": "faefcd5e2e98334246e06eee7bc5fbd4"
+  },
+  "src/app/layout.tsx": {
+    "mtime": 1784895586.7244673,
+    "ast_hash": "4333f02f94a424fbf1a439c9304f7bf4",
+    "semantic_hash": "4333f02f94a424fbf1a439c9304f7bf4"
+  },
+  "src/app/page.tsx": {
+    "mtime": 1784901585.5129983,
+    "ast_hash": "4b4c0e4b91d64a116649e74367ef00f8",
+    "semantic_hash": "4b4c0e4b91d64a116649e74367ef00f8"
+  },
+  "src/app/product/[id]/page.tsx": {
+    "mtime": 1784838110.245406,
+    "ast_hash": "7eb8fbd00f00a5630ca4593d05897fda",
+    "semantic_hash": "7eb8fbd00f00a5630ca4593d05897fda"
+  },
+  "src/app/shop/page.tsx": {
+    "mtime": 1784839750.365506,
+    "ast_hash": "97cfb385d4df70b70a2cfc220065dd73",
+    "semantic_hash": "97cfb385d4df70b70a2cfc220065dd73"
+  },
+  "src/components/canvas/HeroScene.tsx": {
+    "mtime": 1784838897.7223177,
+    "ast_hash": "e363fcc84e70234cdce7cdf84eb6c110",
+    "semantic_hash": "e363fcc84e70234cdce7cdf84eb6c110"
+  },
+  "src/components/common/Logo.tsx": {
+    "mtime": 1784896562.4833026,
+    "ast_hash": "d2cf1fb4d365372883a6ec02eccb99b3",
+    "semantic_hash": "d2cf1fb4d365372883a6ec02eccb99b3"
+  },
+  "src/components/common/Preloader.tsx": {
+    "mtime": 1784895572.3046856,
+    "ast_hash": "c485cc70a5a898a7606815f137351409",
+    "semantic_hash": "c485cc70a5a898a7606815f137351409"
+  },
+  "src/components/home/BrandStory.tsx": {
+    "mtime": 1784839739.6686945,
+    "ast_hash": "5ad4a12dfcc2475602d68a853a7e6149",
+    "semantic_hash": "5ad4a12dfcc2475602d68a853a7e6149"
+  },
+  "src/components/home/CollectionsGrid.tsx": {
+    "mtime": 1784839733.973841,
+    "ast_hash": "5b926b84506d6d1b39fcdcca19757b94",
+    "semantic_hash": "5b926b84506d6d1b39fcdcca19757b94"
+  },
+  "src/components/home/FeaturedProducts.tsx": {
+    "mtime": 1784897632.2673807,
+    "ast_hash": "c71984f198c8cc35a63622dc8e9fc8ac",
+    "semantic_hash": "c71984f198c8cc35a63622dc8e9fc8ac"
+  },
+  "src/components/home/HeroLoopingLogo.tsx": {
+    "mtime": 1784913635.04662,
+    "ast_hash": "41cf4f7633df7e76f4039ca59df63e6d",
+    "semantic_hash": "41cf4f7633df7e76f4039ca59df63e6d"
+  },
+  "src/components/home/HeroRoulette.tsx": {
+    "mtime": 1784892233.4772668,
+    "ast_hash": "eec5f1951807a08f9ca2a55152fb869e",
+    "semantic_hash": "eec5f1951807a08f9ca2a55152fb869e"
+  },
+  "src/components/home/HeroSection.tsx": {
+    "mtime": 1784902070.981373,
+    "ast_hash": "d567e986d1c435352cd91db28ea6cdaa",
+    "semantic_hash": "d567e986d1c435352cd91db28ea6cdaa"
+  },
+  "src/components/home/HeroShowcase.tsx": {
+    "mtime": 1784839721.972926,
+    "ast_hash": "edb9aa47bdec9cc28ce1643656b9f1f1",
+    "semantic_hash": "edb9aa47bdec9cc28ce1643656b9f1f1"
+  },
+  "src/components/home/Newsletter.tsx": {
+    "mtime": 1784837356.0193658,
+    "ast_hash": "8f9ea66c5fef82bd1dcef5c149e1b398",
+    "semantic_hash": "8f9ea66c5fef82bd1dcef5c149e1b398"
+  },
+  "src/components/home/Testimonials.tsx": {
+    "mtime": 1784837353.8327324,
+    "ast_hash": "1e6128a8b1ea23c3f9300ff15e05ad56",
+    "semantic_hash": "1e6128a8b1ea23c3f9300ff15e05ad56"
+  },
+  "src/components/layout/CartDrawer.tsx": {
+    "mtime": 1784838117.662482,
+    "ast_hash": "82296e4670208fc2851086004bbc5e17",
+    "semantic_hash": "82296e4670208fc2851086004bbc5e17"
+  },
+  "src/components/layout/Footer.tsx": {
+    "mtime": 1784894539.3957584,
+    "ast_hash": "3d2e192e7894125df94d7716502e0b15",
+    "semantic_hash": "3d2e192e7894125df94d7716502e0b15"
+  },
+  "src/components/layout/Navbar.tsx": {
+    "mtime": 1784899447.937896,
+    "ast_hash": "5868a81fa1f21e1c29286f268e0dca30",
+    "semantic_hash": "5868a81fa1f21e1c29286f268e0dca30"
+  },
+  "src/data/images.ts": {
+    "mtime": 1784839715.827682,
+    "ast_hash": "b5331d4edfce0b25d5cd842d4095f311",
+    "semantic_hash": "b5331d4edfce0b25d5cd842d4095f311"
+  },
+  "src/data/products.ts": {
+    "mtime": 1784839710.747331,
+    "ast_hash": "a6fa30840f58a651fe5b03b22c20ff68",
+    "semantic_hash": "a6fa30840f58a651fe5b03b22c20ff68"
+  },
+  "src/lib/animations.ts": {
+    "mtime": 1784836997.222954,
+    "ast_hash": "e5bc8f4567378e9daf43b460e4dfd47a",
+    "semantic_hash": "e5bc8f4567378e9daf43b460e4dfd47a"
+  },
+  "src/store/store.ts": {
+    "mtime": 1784899475.0592873,
+    "ast_hash": "7101aa18288151844a4aea7aff117e29",
+    "semantic_hash": "7101aa18288151844a4aea7aff117e29"
+  },
+  "tsconfig.json": {
+    "mtime": 1784836556.787705,
+    "ast_hash": "ee17fd1c97c735e9f3564e3f5251f125",
+    "semantic_hash": "ee17fd1c97c735e9f3564e3f5251f125"
+  },
+  "AGENTS.md": {
+    "mtime": 1784836841.4322774,
+    "ast_hash": "9e09241799026ac05be315a2f0b50055",
+    "semantic_hash": "9e09241799026ac05be315a2f0b50055"
+  },
+  "CLAUDE.md": {
+    "mtime": 1784836841.4349017,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "README.md": {
+    "mtime": 1784836526.5129259,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "public/file.svg": {
+    "mtime": 1784836527.1704934,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "public/globe.svg": {
+    "mtime": 1784836527.2371683,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "public/images/brand-story.png": {
+    "mtime": 1784837796.0763245,
+    "ast_hash": "5f25c1f1f493fd9e6fbdb60fd0844414",
+    "semantic_hash": "5f25c1f1f493fd9e6fbdb60fd0844414"
+  },
+  "public/images/festive-collection.png": {
+    "mtime": 1784837787.4298677,
+    "ast_hash": "a3faff9ca12bab7dfc0bddc493d72388",
+    "semantic_hash": "a3faff9ca12bab7dfc0bddc493d72388"
+  },
+  "public/images/hero-casual.png": {
+    "mtime": 1784839676.5092435,
+    "ast_hash": "0eff1f19273d377a34911c8b94f0e98e",
+    "semantic_hash": "0eff1f19273d377a34911c8b94f0e98e"
+  },
+  "public/images/hero.png": {
+    "mtime": 1784837741.8469577,
+    "ast_hash": "e0017abaa9092bfe883acb278c6cc8a6",
+    "semantic_hash": "e0017abaa9092bfe883acb278c6cc8a6"
+  },
+  "public/images/mens-collection.png": {
+    "mtime": 1784837750.919208,
+    "ast_hash": "56958223e882fef997fc81660e32505f",
+    "semantic_hash": "56958223e882fef997fc81660e32505f"
+  },
+  "public/images/product-anarkali.png": {
+    "mtime": 1784837878.6615434,
+    "ast_hash": "02da296043a7cb86cbf80db625a56fd3",
+    "semantic_hash": "02da296043a7cb86cbf80db625a56fd3"
+  },
+  "public/images/product-kurta.png": {
+    "mtime": 1784837911.893807,
+    "ast_hash": "21e15d313a8ca52ce56903387e0f0e86",
+    "semantic_hash": "21e15d313a8ca52ce56903387e0f0e86"
+  },
+  "public/images/product-lehenga.png": {
+    "mtime": 1784837896.4382768,
+    "ast_hash": "2936035835dfe3a64b76be2f5a0ea5ae",
+    "semantic_hash": "2936035835dfe3a64b76be2f5a0ea5ae"
+  },
+  "public/images/product-nehru.png": {
+    "mtime": 1784837919.8905723,
+    "ast_hash": "8023a667a67b51eb874a12a33653746d",
+    "semantic_hash": "8023a667a67b51eb874a12a33653746d"
+  },
+  "public/images/product-saree.png": {
+    "mtime": 1784837928.3208132,
+    "ast_hash": "ec29fb40bfd4e03aa49810cecac140da",
+    "semantic_hash": "ec29fb40bfd4e03aa49810cecac140da"
+  },
+  "public/images/product-sherwani.png": {
+    "mtime": 1784837887.6006975,
+    "ast_hash": "edc6ff2d6d2a954129dc221c363fdd7e",
+    "semantic_hash": "edc6ff2d6d2a954129dc221c363fdd7e"
+  },
+  "public/images/wedding-collection.png": {
+    "mtime": 1784837778.3346882,
+    "ast_hash": "f80ed02136be905a1e2e38a19045ba7b",
+    "semantic_hash": "f80ed02136be905a1e2e38a19045ba7b"
+  },
+  "public/images/womens-collection.png": {
+    "mtime": 1784837760.7428198,
+    "ast_hash": "df211dc628ca8450aeaaf71778c920df",
+    "semantic_hash": "df211dc628ca8450aeaaf71778c920df"
+  },
+  "public/next.svg": {
+    "mtime": 1784836527.3141356,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "public/vercel.svg": {
+    "mtime": 1784836527.3861308,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "public/window.svg": {
+    "mtime": 1784836527.4501328,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}

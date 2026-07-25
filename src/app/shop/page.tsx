@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CartDrawer from '@/components/layout/CartDrawer';
+import ClearanceRail from '@/components/home/ClearanceRail';
 import { products, Product } from '@/data/products';
 import { getProductImage } from '@/data/images';
 import { useStore } from '@/store/store';
@@ -192,6 +193,11 @@ export default function ShopPage() {
               Explore breathable cotton kurtis, short linen kurtas, casual palazzo sets, and comfortable dailywear.
             </p>
           </div>
+        </div>
+
+        {/* Clearance Sale — genuine markdowns, dark contrast band */}
+        <div className="container" style={{ marginBottom: 'var(--space-4xl)' }}>
+          <ClearanceRail />
         </div>
 
         <div className="container" style={{ paddingBottom: 'var(--space-4xl)' }}>
