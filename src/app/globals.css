@@ -3690,3 +3690,194 @@ input, textarea, select {
   .jf-col-bg,
   .jf-clear-media img { transition: none; }
 }
+
+/* ============================================================
+   SHOP · migrated to the jf- design system
+   ============================================================ */
+.jf-shop-head {
+  padding-top: calc(var(--nav-height) + var(--space-2xl));
+  padding-bottom: var(--space-xl);
+  text-align: center;
+}
+.jf-shop-head .jf-eyebrow { justify-content: center; }
+.jf-shop-head .jf-h2 { margin: var(--space-sm) auto 0; }
+.jf-shop-lede { margin: var(--space-md) auto 0; max-width: 46ch; }
+
+.jf-shop-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2xl);
+}
+.jf-shop-filters { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+.jf-fchip {
+  min-height: 42px;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--rule-hair-strong, rgba(28, 25, 23, 0.24));
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--dur-base, 300ms) var(--jf-ease-out), color var(--dur-base, 300ms), border-color var(--dur-base, 300ms);
+}
+.jf-fchip:hover { border-color: var(--text-primary); color: var(--text-primary); }
+.jf-fchip.active { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+.jf-fchip:focus-visible { outline: 2px solid var(--crimson); outline-offset: 2px; }
+.jf-fdivider { width: 1px; align-self: stretch; background: var(--rule-hair-strong, rgba(28, 25, 23, 0.24)); margin: 4px var(--space-xs); }
+.jf-shop-sort { display: flex; align-items: center; gap: var(--space-sm); }
+.jf-shop-count { font-size: var(--text-sm); color: var(--text-secondary); white-space: nowrap; }
+.jf-shop-select {
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--rule-hair-strong, rgba(28, 25, 23, 0.24));
+  border-radius: var(--radius-full);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+}
+.jf-shop-select:focus-visible { border-color: var(--crimson); }
+
+.jf-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-xl);
+}
+
+.jf-pcard { position: relative; }
+.jf-pcard-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  box-shadow: var(--jf-shadow-card);
+}
+.jf-pcard-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--jf-ease-out); }
+.jf-pcard:hover .jf-pcard-media img { transform: scale(1.05); }
+.jf-pcard-fav {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 38px; height: 38px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--rule-hair, rgba(28, 25, 23, 0.12));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; cursor: pointer; z-index: 3;
+  transition: transform var(--dur-fast, 150ms) var(--jf-ease-out);
+}
+.jf-pcard-fav:hover { transform: scale(1.12); }
+.jf-pcard-fav:focus-visible { outline: 2px solid var(--crimson); outline-offset: 2px; }
+.jf-pcard-add {
+  position: absolute;
+  left: var(--space-sm); right: var(--space-sm); bottom: var(--space-sm);
+  z-index: 3;
+  display: flex; align-items: center; justify-content: center; gap: var(--space-xs);
+  padding: 11px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: var(--color-inverse, #FAF7F2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--dur-base, 300ms) var(--jf-ease-out);
+}
+.jf-pcard-add:hover { background: var(--crimson); }
+.jf-pcard-add.added { background: var(--color-mehendi, #5B7052); }
+.jf-pcard-info { padding-top: var(--space-md); }
+.jf-pcard-cat { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crimson); margin-bottom: 4px; }
+.jf-pcard-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; line-height: 1.2; margin-bottom: 6px; color: var(--text-primary); }
+.jf-pcard-price { display: flex; align-items: baseline; gap: var(--space-sm); margin-bottom: var(--space-sm); }
+.jf-pcard-price .now { font-weight: 700; color: var(--text-primary); }
+.jf-pcard-price .was { font-size: var(--text-sm); color: var(--text-secondary); text-decoration: line-through; }
+.jf-pcard-colors { display: flex; gap: 6px; }
+.jf-pcard-colors .dot {
+  width: 16px; height: 16px;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--dur-fast, 150ms) var(--jf-ease-out), border-color var(--dur-fast, 150ms);
+}
+.jf-pcard-colors .dot.active,
+.jf-pcard-colors .dot:hover { border-color: var(--text-primary); transform: scale(1.15); }
+.jf-shop-empty { text-align: center; padding: var(--space-4xl) 0; color: var(--text-secondary); }
+.jf-shop-empty p { font-size: var(--text-lg); margin-bottom: var(--space-lg); }
+
+/* ============================================================
+   MOBILE PASS · phone-first tuning (loaded last, wins the cascade)
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Hero: headline + CTA lead the fold, carousel compact below */
+  .jf-hero {
+    padding-top: calc(var(--nav-height) + var(--space-lg));
+    padding-bottom: var(--space-xl);
+  }
+  .jf-hero-split { gap: var(--space-xl); }
+  .jf-hero-title { font-size: clamp(2.3rem, 11vw, 3rem); max-width: 16ch; }
+  .jf-hero-sub { font-size: var(--text-base); }
+  .jf-hero-cta { width: 100%; }
+  .jf-hero-cta .jf-btn { flex: 1; justify-content: center; }
+  .jf-carousel { max-width: 320px; }
+
+  /* Sections breathe less on a phone */
+  .jf-collections,
+  .jf-edit,
+  .jf-story { padding: var(--space-3xl) 0; }
+  .jf-clear { padding: var(--space-2xl) 0; }
+  .jf-h2 { font-size: clamp(1.9rem, 7vw, 2.4rem); }
+
+  /* Shop: compact header, 2-up grid */
+  .jf-shop-head {
+    padding-top: calc(var(--nav-height) + var(--space-lg));
+    padding-bottom: var(--space-sm);
+  }
+  .jf-shop-lede { display: none; }
+  .jf-shop-bar { margin-bottom: var(--space-lg); }
+  .jf-shop-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+  .jf-pcard-name { font-size: var(--text-base); }
+  .jf-pcard-add { font-size: 10px; padding: 9px; letter-spacing: 0.04em; }
+}
+@media (max-width: 360px) {
+  .jf-shop-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   RICHER RESPONSIVE · desktop density on phones, phone ergonomics
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Collections → bento: card 1 full, cards 2+3 side-by-side, card 4 full */
+  .jf-collections-grid { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+  .jf-col-card:nth-child(1) { grid-column: 1 / -1; min-height: 320px; }
+  .jf-col-card:nth-child(4) { grid-column: 1 / -1; min-height: 240px; }
+  .jf-col-card:nth-child(2),
+  .jf-col-card:nth-child(3) { min-height: 240px; }
+  .jf-col-content { padding: var(--space-lg); }
+  .jf-col-title { font-size: var(--text-xl); }
+  .jf-col-desc { display: none; }
+
+  /* Footer → 2 columns (brand spans the top) instead of a single stack */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+  .footer-brand { grid-column: 1 / -1; }
+
+  /* Hero → equal-width CTAs, tighter composed block */
+  .jf-hero-split { gap: var(--space-lg); }
+  .jf-hero-cta { width: 100%; }
+  .jf-hero-cta .jf-btn { flex: 1 1 0; min-width: 0; }
+
+  /* Denser section rhythm (less "big and empty") */
+  .jf-collections,
+  .jf-edit,
+  .jf-story { padding: var(--space-2xl) 0; }
+}
