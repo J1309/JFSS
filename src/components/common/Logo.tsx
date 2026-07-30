@@ -27,7 +27,7 @@ export default function Logo({
 
   return (
     <Link href="/" className={`brand-logo brand-logo-${size} ${className}`} onClick={onClick}>
-      {/* Monogram Diamond Symbol */}
+      {/* Monogram Diamond Symbol (JessAura J+A) */}
       <div className="logo-symbol" style={{ width: currentSize.box, height: currentSize.box }}>
         <svg
           width={currentSize.svg}
@@ -48,32 +48,33 @@ export default function Logo({
             strokeWidth="1.6"
             className="symbol-frame"
           />
-          {/* Stylized 'J' */}
+          {/* Stylized 'J' (Jess) */}
           <path
-            d="M21 11V21C21 23.5 19 25 16.5 25C14.5 25 13 23.8 13 22"
+            d="M16 11V21C16 23.5 14 25 11.5 25C9.5 25 8 23.8 8 22"
             stroke="currentColor"
             strokeWidth="2.2"
             strokeLinecap="round"
             className="symbol-j"
           />
-          {/* Stylized 'F' top & middle bars */}
+          {/* Stylized 'A' (Aura) */}
           <path
-            d="M14 12.5H23M14 17.5H20.5"
+            d="M19.5 25L23.5 11L27.5 25M21 20H26"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.2"
             strokeLinecap="round"
-            className="symbol-f"
+            strokeLinejoin="round"
+            className="symbol-a"
           />
-          {/* Lotus Dot Accent */}
-          <circle cx="18" cy="8" r="1.5" fill="var(--saffron)" />
+          {/* Aura Dot Accent */}
+          <circle cx="18" cy="8" r="1.5" fill="var(--crimson)" />
         </svg>
       </div>
 
       {/* Brand Text Block (Optional) */}
       {showText && (
         <div className="logo-text-group">
-          <span className="logo-title">JIONA</span>
-          {showSubtitle && <span className="logo-subtitle">FASHION</span>}
+          <span className="logo-title">JESSAURA</span>
+          {showSubtitle && <span className="logo-subtitle">DAILYWEAR</span>}
         </div>
       )}
     </Link>

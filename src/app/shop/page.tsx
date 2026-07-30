@@ -144,7 +144,7 @@ export default function ShopPage() {
         <div className="jf-shop-head" ref={headerRef}>
           <div className="container">
             <span className="jf-eyebrow">Casual & Dailywear</span>
-            <h1 className="jf-h2">Shop <span className="accent">JionaFashion</span></h1>
+            <h1 className="jf-h2">Shop <span className="accent">JessAura</span></h1>
             <p className="jf-lede jf-shop-lede">
               Breathable cotton kurtis, short linen kurtas, casual palazzo sets and comfortable dailywear.
             </p>

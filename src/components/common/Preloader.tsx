@@ -27,14 +27,14 @@ export default function Preloader() {
           }}
         >
           <div className="preloader-content">
-            {/* Animated Diamond Logo Monogram */}
+            {/* Animated Diamond Logo Monogram (JessAura J+A) */}
             <motion.div
               className="preloader-symbol"
               initial={{ scale: 0.5, opacity: 0, rotate: -15 }}
               animate={{ scale: 1, opacity: 1, rotate: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <svg width="64" height="64" viewBox="0 0 36 36" fill="none">
+              <svg width="68" height="68" viewBox="0 0 36 36" fill="none">
                 {/* Diamond Outer Frame */}
                 <motion.rect
                   x="18"
@@ -50,9 +50,9 @@ export default function Preloader() {
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1.2, ease: 'easeInOut' }}
                 />
-                {/* Stylized 'J' */}
+                {/* Stylized 'J' (Jess) */}
                 <motion.path
-                  d="M21 11V21C21 23.5 19 25 16.5 25C14.5 25 13 23.8 13 22"
+                  d="M16 11V21C16 23.5 14 25 11.5 25C9.5 25 8 23.8 8 22"
                   stroke="currentColor"
                   strokeWidth="2.2"
                   strokeLinecap="round"
@@ -60,22 +60,23 @@ export default function Preloader() {
                   animate={{ pathLength: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 />
-                {/* Stylized 'F' */}
+                {/* Stylized 'A' (Aura) */}
                 <motion.path
-                  d="M14 12.5H23M14 17.5H20.5"
+                  d="M19.5 25L23.5 11L27.5 25M21 20H26"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.2"
                   strokeLinecap="round"
+                  strokeLinejoin="round"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ delay: 0.6, duration: 0.7 }}
                 />
-                {/* Lotus Dot Accent */}
+                {/* Aura Dot Accent */}
                 <motion.circle
                   cx="18"
                   cy="8"
                   r="1.8"
-                  fill="var(--terracotta)"
+                  fill="var(--crimson)"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.9, type: 'spring', stiffness: 400 }}
@@ -83,15 +84,15 @@ export default function Preloader() {
               </svg>
             </motion.div>
 
-            {/* Brand Title Stagger */}
+            {/* Brand Title Stagger (JessAura) */}
             <motion.div
               className="preloader-text-group"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <h1 className="preloader-title">JIONA</h1>
-              <span className="preloader-subtitle">FASHION</span>
+              <h1 className="preloader-title">JESSAURA</h1>
+              <span className="preloader-subtitle">MODERN SOUTH ASIAN DAILYWEAR</span>
             </motion.div>
 
             {/* Progress Line */}

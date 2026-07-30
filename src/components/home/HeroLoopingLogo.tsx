@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 
 /**
  * Hero logo showpiece — the animated diamond monogram draws itself, then the
- * JIONAFASHION wordmark settles beneath it. Shares the draw-in motif with the
- * site Preloader so the brand mark stays memorable. (Preloader itself untouched.)
+ * JESSAURA wordmark settles beneath it. Shares the draw-in motif with the
+ * site Preloader so the brand mark stays memorable.
  */
 export default function HeroLoopingLogo() {
   return (
@@ -31,8 +31,9 @@ export default function HeroLoopingLogo() {
             animate={{ pathLength: 1 }}
             transition={{ duration: 1.1, ease: 'easeInOut' }}
           />
+          {/* Stylized 'J' (Jess) */}
           <motion.path
-            d="M21 11V21C21 23.5 19 25 16.5 25C14.5 25 13 23.8 13 22"
+            d="M16 11V21C16 23.5 14 25 11.5 25C9.5 25 8 23.8 8 22"
             stroke="currentColor"
             strokeWidth="2.4"
             strokeLinecap="round"
@@ -40,11 +41,13 @@ export default function HeroLoopingLogo() {
             animate={{ pathLength: 1 }}
             transition={{ delay: 0.3, duration: 0.85, ease: 'easeOut' }}
           />
+          {/* Stylized 'A' (Aura) */}
           <motion.path
-            d="M14 12.5H23M14 17.5H20.5"
+            d="M19.5 25L23.5 11L27.5 25M21 20H26"
             stroke="currentColor"
             strokeWidth="2.2"
             strokeLinecap="round"
+            strokeLinejoin="round"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ delay: 0.55, duration: 0.7, ease: 'easeOut' }}
@@ -67,7 +70,7 @@ export default function HeroLoopingLogo() {
         animate={{ opacity: 1, y: 0, letterSpacing: '0.16em' }}
         transition={{ delay: 0.35, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        JIONA<span className="accent">FASHION</span>
+        JESS<span className="accent">AURA</span>
       </motion.div>
     </div>
   );

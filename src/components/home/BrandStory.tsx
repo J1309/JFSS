@@ -48,7 +48,7 @@ export default function BrandStory() {
       <div className="container">
         <div className="jf-story-grid">
           <div className="jf-story-text">
-            <span className="jf-eyebrow">The Jiona Story</span>
+            <span className="jf-eyebrow">The JessAura Story</span>
             <h2>
               Everyday <span className="accent">comfort</span>, artisanal craft
             </h2>

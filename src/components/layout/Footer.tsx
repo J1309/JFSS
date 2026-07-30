@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2026 JionaFashion. All rights reserved. Designed for everyday comfort & style.</p>
+          <p>© 2026 JessAura. All rights reserved. Designed for everyday comfort & style.</p>
           <div className="footer-socials">
             <a href="#" aria-label="Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
