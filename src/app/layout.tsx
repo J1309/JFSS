@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Preloader from "@/components/common/Preloader";
 import SmoothScroll from "@/components/common/SmoothScroll";
+import ConvexClientProvider from "@/components/providers/ConvexClientProvider";
 
 export const metadata: Metadata = {
   title: "JessAura — Modern South Asian Dailywear & Casual Fashion",
@@ -34,9 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SmoothScroll />
-        <Preloader />
-        {children}
+        <ConvexClientProvider>
+          <SmoothScroll />
+          <Preloader />
+          {children}
+        </ConvexClientProvider>
       </body>
     </html>
   );
