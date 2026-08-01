@@ -68,9 +68,9 @@ export default function CollectionsGrid() {
           </Link>
         </div>
 
-        <div className="jf-collections-grid">
+        <div className="jf-mosaic">
           {collections.map((col, i) => (
-            <Link key={col.id} href={`/shop?category=${col.id}`} className="jf-col-card">
+            <Link key={col.id} href={`/shop?category=${col.id}`} className={`jf-col-card jf-mosaic-${i}`}>
               <div
                 className="jf-col-bg"
                 style={{ backgroundImage: `url(${collectionImages[i]})` }}

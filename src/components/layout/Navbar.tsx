@@ -37,6 +37,13 @@ export default function Navbar() {
 
   return (
     <>
+      <div className="jf-utility-bar" aria-hidden="true">
+        <span>Free shipping over $75</span>
+        <span className="jf-utility-dot" />
+        <span>Handcrafted in small batches</span>
+        <span className="jf-utility-dot" />
+        <span>Easy 30-day returns</span>
+      </div>
       <nav
         className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}
         style={{ '--nav-fill': fill } as React.CSSProperties}

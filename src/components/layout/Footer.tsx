@@ -1,50 +1,44 @@
 import Link from 'next/link';
-import Logo from '@/components/common/Logo';
 
 export default function Footer() {
   return (
-    <footer className="footer paisley-bg">
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="footer-grid">
-          <div className="footer-brand">
-            <Logo size="lg" />
-            <p style={{ marginTop: 'var(--space-md)' }}>
-              Effortless South Asian dailywear & casual fashion for men and women.
-              Crafted with breathable cottons, relaxed linens, and modern silhouettes for everyday comfort.
-            </p>
-          </div>
+    <footer className="jf-foot">
+      <div className="container">
+        {/* Giant statement wordmark */}
+        <div className="jf-foot-statement">
+          <span className="jf-foot-wordmark">
+            JESS<span className="gold">AURA</span>
+          </span>
+          <p className="jf-foot-tag">Modern South Asian dailywear — breathable cottons, relaxed linens, everyday ease.</p>
+        </div>
 
-          <div className="footer-column">
-            <h4>Shop Casuals</h4>
+        <div className="jf-foot-grid">
+          <div className="jf-foot-col">
+            <h4>Shop</h4>
             <Link href="/shop?category=women">Women&apos;s Dailywear</Link>
             <Link href="/shop?category=men">Men&apos;s Everyday</Link>
-            <Link href="/shop?type=ready-to-wear">Cotton Kurtis</Link>
-            <Link href="/shop?type=semi-stitched">Short Kurtas</Link>
+            <Link href="/shop?type=ready-to-wear">Ready to Wear</Link>
             <Link href="/shop">New Arrivals</Link>
           </div>
-
-          <div className="footer-column">
+          <div className="jf-foot-col">
             <h4>Company</h4>
             <a href="#">Our Story</a>
-            <a href="#">Sustainable Cottons</a>
             <a href="#">Artisan Craft</a>
+            <a href="#">Sustainable Cottons</a>
             <a href="#">Careers</a>
-            <a href="#">Press</a>
           </div>
-
-          <div className="footer-column">
+          <div className="jf-foot-col">
             <h4>Support</h4>
             <a href="#">Contact Us</a>
             <a href="#">Size Guide</a>
-            <a href="#">Shipping & Returns</a>
+            <a href="#">Shipping &amp; Returns</a>
             <a href="#">Fabric Care</a>
-            <a href="#">FAQ</a>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p>© 2026 JessAura. All rights reserved. Designed for everyday comfort & style.</p>
-          <div className="footer-socials">
+        <div className="jf-foot-bottom">
+          <p>© 2026 JessAura. All rights reserved.</p>
+          <div className="jf-foot-socials">
             <a href="#" aria-label="Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />

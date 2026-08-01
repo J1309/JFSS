@@ -1,35 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState } from 'react';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from('.newsletter-content', {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,44 +18,30 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="section newsletter paisley-bg" ref={sectionRef}>
-      <div className="container container-narrow newsletter-content" style={{ position: 'relative', zIndex: 1 }}>
-        <span className="text-overline" style={{ display: 'block', marginBottom: 'var(--space-md)' }}>
-          Stay Connected
-        </span>
-        <h2 className="font-display">Join the JFS Family</h2>
-        <p>
-          Be the first to discover new collections, exclusive offers, and stories from our artisan workshops.
-        </p>
+    <section className="jf-news">
+      <div className="container jf-news-inner">
+        <div className="jf-news-copy">
+          <span className="jf-eyebrow">Stay connected</span>
+          <h2 className="jf-news-title">First to know, first to wear</h2>
+          <p className="jf-news-sub">
+            New collections, artisan stories, and early access — no noise.
+          </p>
+        </div>
 
-        <form className="newsletter-form" onSubmit={handleSubmit}>
+        <form className="jf-news-form" onSubmit={handleSubmit}>
+          <label htmlFor="jf-news-email" className="sr-only">Email address</label>
           <input
+            id="jf-news-email"
             type="email"
-            className="newsletter-input"
-            placeholder="Enter your email"
+            className="jf-news-input"
+            placeholder="Your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <motion.button
-            className="btn btn-primary"
-            type="submit"
-            style={{ borderRadius: 'var(--radius-full)' }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            {submitted ? (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: 'spring' }}
-              >
-                ✓ Subscribed!
-              </motion.span>
-            ) : (
-              'Subscribe'
-            )}
-          </motion.button>
+          <button className="jf-btn jf-btn-primary" type="submit">
+            {submitted ? '✓ Subscribed' : 'Subscribe'}
+          </button>
         </form>
       </div>
     </section>
