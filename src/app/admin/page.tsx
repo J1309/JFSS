@@ -327,7 +327,7 @@ function ProductForm({
           product: {
             ...shared,
             slug,
-            colors: [{ name: 'Default', hex: '#1E2A4A', image: form.image }],
+            colors: [{ name: 'Default', hex: '#9B0000', image: form.image }],
             images: [form.image],
             rating: 4.5,
             reviews: 0,
