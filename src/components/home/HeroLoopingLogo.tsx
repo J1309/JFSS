@@ -3,65 +3,25 @@
 import { motion } from 'framer-motion';
 
 /**
- * Hero logo showpiece — the animated diamond monogram draws itself, then the
- * JESSAURA wordmark settles beneath it. Shares the draw-in motif with the
- * site Preloader so the brand mark stays memorable.
+ * Hero logo showpiece — the peacock J+A monogram inks itself in (same
+ * diagonal reveal motif as the site Preloader), then the JESSAURA wordmark
+ * settles beneath it. Loader → hero brand continuity.
  */
 export default function HeroLoopingLogo() {
   return (
     <div className="jf-logo-stage">
       <motion.div
         className="jf-logo-mark"
-        initial={{ scale: 0.6, opacity: 0, rotate: -12 }}
-        animate={{ scale: 1, opacity: 1, rotate: 0 }}
+        initial={{ scale: 0.85, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        whileHover={{ rotate: 4, scale: 1.04 }}
+        whileHover={{ rotate: 3, scale: 1.05 }}
       >
-        <svg width="52" height="52" viewBox="0 0 36 36" fill="none">
-          <motion.rect
-            x="18"
-            y="2"
-            width="22.6"
-            height="22.6"
-            rx="3"
-            transform="rotate(45 18 2)"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.1, ease: 'easeInOut' }}
-          />
-          {/* Stylized 'J' (Jess) */}
-          <motion.path
-            d="M16 11V21C16 23.5 14 25 11.5 25C9.5 25 8 23.8 8 22"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ delay: 0.3, duration: 0.85, ease: 'easeOut' }}
-          />
-          {/* Stylized 'A' (Aura) */}
-          <motion.path
-            d="M19.5 25L23.5 11L27.5 25M21 20H26"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ delay: 0.55, duration: 0.7, ease: 'easeOut' }}
-          />
-          <motion.circle
-            cx="18"
-            cy="8"
-            r="2"
-            fill="var(--crimson)"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.95, type: 'spring', stiffness: 450 }}
-          />
-        </svg>
+        <img
+          src="/images/JA logo.png"
+          alt=""
+          className="jf-logo-peacock"
+        />
       </motion.div>
 
       <motion.div

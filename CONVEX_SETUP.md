@@ -25,6 +25,13 @@ The code is ready; these are the one-time dashboard steps only you can do.
 - Convex dashboard → **Functions → `seed:seed` → Run**.
 - Inserts the 12 products from `src/data/products.ts`. Safe to re-run (no-ops if data exists).
 
+## 6. Set the admin passcode
+- Convex dashboard → **Settings → Environment Variables** → add `ADMIN_KEY` = a passcode you choose.
+- The `/admin` panel asks for this passcode to manage products (add/edit/delete, toggle featured/clearance).
+- To use `/admin` in local dev, also add your deployment URL to `.env.local`:
+  `NEXT_PUBLIC_CONVEX_URL=https://<your-deployment>.convex.cloud`
+  (find it in the Convex dashboard under Settings → URL & Deploy Key).
+
 ---
 
 ### Notes

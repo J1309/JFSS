@@ -35,7 +35,7 @@ export default function HeroRoulette() {
   }, [paused, next]);
 
   const active = featured[index];
-  const auraColor = active.colors[0]?.hex || '#9B0000';
+  const auraColor = active.colors[0]?.hex || '#1E2A4A';
 
   return (
     <div
