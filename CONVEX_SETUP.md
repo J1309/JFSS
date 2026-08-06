@@ -25,7 +25,23 @@ The code is ready; these are the one-time dashboard steps only you can do.
 - Convex dashboard → **Functions → `seed:seed` → Run**.
 - Inserts the 12 products from `src/data/products.ts`. Safe to re-run (no-ops if data exists).
 
-## 6. Set the admin passcode
+## 6. What the admin panel manages
+
+`/admin` is a full console, not just product CRUD:
+
+| Section | What it does |
+| --- | --- |
+| **Dashboard** | Revenue, order count, average order value, units sold, 14-day revenue chart, best sellers, recent orders, low-stock alerts |
+| **Orders** | Filter by status, search, open an order for full detail (items, address, totals), move it through pending → paid → shipped → delivered → cancelled, add internal notes, delete |
+| **Products** | Create / edit / delete, inline stock editing, one-click featured / new / bestseller / clearance toggles, category filter and search |
+| **Customers** | Built automatically from orders — order count, lifetime spend, repeat-buyer flag, CSV export |
+| **Subscribers** | Newsletter signups from the storefront, with CSV export |
+
+Orders are real: the storefront cart's **Checkout** button collects delivery
+details, writes an order, and decrements product stock. Payment is not taken
+on that screen — orders arrive as `pending` for you to confirm.
+
+## 7. Set the admin passcode
 - Convex dashboard → **Settings → Environment Variables** → add `ADMIN_KEY` = a passcode you choose.
 - The `/admin` panel asks for this passcode to manage products (add/edit/delete, toggle featured/clearance).
 - To use `/admin` in local dev, also add your deployment URL to `.env.local`:

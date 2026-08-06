@@ -1,12 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/store';
 import { getProductImage } from '@/data/images';
 import Link from 'next/link';
+import CheckoutForm from './CheckoutForm';
 
 export default function CartDrawer() {
   const { cart, cartOpen, closeCart, updateQuantity, removeFromCart, cartTotal, cartCount } = useStore();
+  const [checkingOut, setCheckingOut] = useState(false);
 
   return (
     <AnimatePresence>
@@ -36,6 +39,12 @@ export default function CartDrawer() {
               </button>
             </div>
 
+            {checkingOut ? (
+              <div className="cart-drawer-items">
+                <CheckoutForm onClose={() => setCheckingOut(false)} />
+              </div>
+            ) : (
+              <>
             <div className="cart-drawer-items">
               {cart.length === 0 ? (
                 <div className="cart-empty">
@@ -131,7 +140,11 @@ export default function CartDrawer() {
                     ${cartTotal().toFixed(2)}
                   </motion.span>
                 </div>
-                <button className="btn btn-primary btn-lg" style={{ width: '100%' }}>
+                <button
+                  className="btn btn-primary btn-lg"
+                  style={{ width: '100%' }}
+                  onClick={() => setCheckingOut(true)}
+                >
                   Checkout
                 </button>
                 <p
@@ -145,6 +158,8 @@ export default function CartDrawer() {
                   Free shipping on orders over $200
                 </p>
               </motion.div>
+            )}
+              </>
             )}
           </motion.div>
         </>

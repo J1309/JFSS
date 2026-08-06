@@ -29,9 +29,56 @@ export default defineSchema({
     clearance: v.optional(v.boolean()),
     rating: v.number(),
     reviews: v.number(),
+    // Inventory. Optional so pre-existing seeded docs stay valid.
+    stock: v.optional(v.number()),
   })
     .index('by_slug', ['slug'])
     .index('by_productId', ['productId'])
     .index('by_category', ['category'])
     .index('by_featured', ['featured']),
+
+  orders: defineTable({
+    orderNumber: v.string(),
+    customerName: v.string(),
+    customerEmail: v.string(),
+    customerPhone: v.optional(v.string()),
+    address: v.object({
+      line1: v.string(),
+      city: v.string(),
+      postcode: v.string(),
+      country: v.string(),
+    }),
+    items: v.array(
+      v.object({
+        productId: v.string(),
+        name: v.string(),
+        image: v.string(),
+        color: v.string(),
+        size: v.string(),
+        price: v.number(),
+        quantity: v.number(),
+      })
+    ),
+    subtotal: v.number(),
+    shipping: v.number(),
+    total: v.number(),
+    status: v.union(
+      v.literal('pending'),
+      v.literal('paid'),
+      v.literal('shipped'),
+      v.literal('delivered'),
+      v.literal('cancelled')
+    ),
+    notes: v.optional(v.string()),
+    placedAt: v.number(),
+  })
+    .index('by_status', ['status'])
+    .index('by_email', ['customerEmail'])
+    .index('by_placedAt', ['placedAt']),
+
+  subscribers: defineTable({
+    email: v.string(),
+    source: v.string(),
+    createdAt: v.number(),
+  }).index('by_email', ['email']),
 });

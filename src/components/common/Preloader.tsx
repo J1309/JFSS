@@ -1,10 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
+  // The brand intro belongs to the storefront, not the admin console —
+  // staff shouldn't sit through it on every load.
+  const isAdmin = usePathname()?.startsWith('/admin');
 
   useEffect(() => {
     // Hide loader after 2.6 seconds (ink reveal + shimmer)
@@ -14,6 +18,8 @@ export default function Preloader() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  if (isAdmin) return null;
 
   return (
     <AnimatePresence>

@@ -1,0 +1,86 @@
+import { mutation } from './_generated/server';
+import { v } from 'convex/values';
+
+/**
+ * Public checkout endpoint — called by the storefront cart drawer.
+ * Creates the order and decrements stock for each line item.
+ * No admin key: anyone can place an order, nobody can read them back
+ * (all order reads live in admin.ts behind the admin key).
+ */
+export const place = mutation({
+  args: {
+    customerName: v.string(),
+    customerEmail: v.string(),
+    customerPhone: v.optional(v.string()),
+    address: v.object({
+      line1: v.string(),
+      city: v.string(),
+      postcode: v.string(),
+      country: v.string(),
+    }),
+    items: v.array(
+      v.object({
+        productId: v.string(),
+        name: v.string(),
+        image: v.string(),
+        color: v.string(),
+        size: v.string(),
+        price: v.number(),
+        quantity: v.number(),
+      })
+    ),
+    notes: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    if (args.items.length === 0) throw new Error('Cannot place an empty order');
+
+    const subtotal = args.items.reduce((s, i) => s + i.price * i.quantity, 0);
+    const shipping = subtotal >= 75 ? 0 : 6;
+    const orderNumber = `JA-${Date.now().toString(36).toUpperCase()}`;
+
+    const id = await ctx.db.insert('orders', {
+      ...args,
+      orderNumber,
+      subtotal,
+      shipping,
+      total: subtotal + shipping,
+      status: 'pending',
+      placedAt: Date.now(),
+    });
+
+    // Draw down inventory for products that track stock.
+    for (const item of args.items) {
+      const product = await ctx.db
+        .query('products')
+        .withIndex('by_productId', (q) => q.eq('productId', item.productId))
+        .unique();
+      if (product && typeof product.stock === 'number') {
+        await ctx.db.patch(product._id, {
+          stock: Math.max(0, product.stock - item.quantity),
+        });
+      }
+    }
+
+    return { orderNumber, id };
+  },
+});
+
+/** Public newsletter signup. Idempotent on email. */
+export const subscribe = mutation({
+  args: { email: v.string(), source: v.optional(v.string()) },
+  handler: async (ctx, { email, source }) => {
+    const normalized = email.trim().toLowerCase();
+    const existing = await ctx.db
+      .query('subscribers')
+      .withIndex('by_email', (q) => q.eq('email', normalized))
+      .unique();
+    if (existing) return 'already subscribed';
+
+    await ctx.db.insert('subscribers', {
+      email: normalized,
+      source: source ?? 'footer',
+      createdAt: Date.now(),
+    });
+    return 'subscribed';
+  },
+});
