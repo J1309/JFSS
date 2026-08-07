@@ -66,13 +66,14 @@ export default function HeroSection() {
 
           <div className="jf-hero-cta">
             <Link href="/shop" className="jf-btn jf-btn-primary">
-              Shop the edit
+              Shop the collection
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
+            {/* Label names the destination it actually goes to. */}
             <Link href="/shop?category=women" className="jf-btn jf-btn-ghost">
-              New in
+              Browse womenswear
             </Link>
           </div>
 

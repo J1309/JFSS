@@ -3010,6 +3010,9 @@ input, textarea, select {
   justify-content: flex-start;
   margin-top: var(--space-xs);
 }
+/* Buttons are white-space: nowrap, so letting them shrink clips the label.
+   Hold their content width and let the row wrap instead. */
+.jf-hero-cta .jf-btn { flex-shrink: 0; }
 
 /* Buttons (editorial) */
 .jf-btn {
@@ -3924,7 +3927,9 @@ input, textarea, select {
   .jf-hero-title { font-size: clamp(2.3rem, 11vw, 3rem); max-width: 16ch; }
   .jf-hero-sub { font-size: var(--text-base); }
   .jf-hero-cta { width: 100%; }
-  .jf-hero-cta .jf-btn { flex: 1; justify-content: center; }
+  /* Full-width stack, not a shared row — the buttons are white-space: nowrap,
+     so splitting 375px between them clips the longer label. */
+  .jf-hero-cta .jf-btn { flex: 1 1 100%; justify-content: center; }
   .jf-carousel { max-width: 320px; }
 
   /* Sections breathe less on a phone */
@@ -3970,7 +3975,7 @@ input, textarea, select {
   /* Hero → equal-width CTAs, tighter composed block */
   .jf-hero-split { gap: var(--space-lg); }
   .jf-hero-cta { width: 100%; }
-  .jf-hero-cta .jf-btn { flex: 1 1 0; min-width: 0; }
+  .jf-hero-cta .jf-btn { flex: 1 1 100%; min-width: 0; }
 
   /* Denser section rhythm (less "big and empty") */
   .jf-collections,
