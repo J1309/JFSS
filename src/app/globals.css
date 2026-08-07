@@ -4927,3 +4927,109 @@ input, textarea, select {
   .jf-look-card:hover { transform: none; }
   .jf-look-card:hover img { transform: none; }
 }
+
+/* ---------- Lookbook on shop: clickable cards + lightbox popup ---------- */
+.jf-look-shop { background: var(--bg-primary); border-top: none; padding-top: 0; }
+
+/* The card is a <button> here — strip the UA chrome, keep the figure look. */
+.jf-look-card {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+.jf-look-card:focus-visible { outline: 2px solid var(--crimson); outline-offset: 3px; }
+.jf-look-zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--crimson);
+  box-shadow: 0 4px 14px rgba(28, 25, 23, 0.18);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--dur-base, 300ms) var(--jf-ease-out),
+    transform var(--dur-base, 300ms) var(--jf-ease-out);
+}
+.jf-look-card:hover .jf-look-zoom,
+.jf-look-card:focus-visible .jf-look-zoom { opacity: 1; transform: translateY(0); }
+
+/* Lightbox */
+.jf-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1000);
+  background: rgba(16, 13, 11, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 24px);
+  padding: clamp(12px, 3vw, 32px);
+  animation: jf-lb-in 200ms var(--jf-ease-out);
+}
+@keyframes jf-lb-in { from { opacity: 0; } to { opacity: 1; } }
+.jf-lb-stage {
+  margin: 0;
+  max-width: min(560px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.jf-lb-stage img {
+  max-width: 100%;
+  max-height: 78dvh;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+.jf-lb-count {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  color: rgba(250, 247, 242, 0.8);
+}
+.jf-lb-close,
+.jf-lb-nav {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FAF7F2;
+  cursor: pointer;
+  transition: background var(--dur-fast, 150ms), color var(--dur-fast, 150ms);
+}
+.jf-lb-close:hover,
+.jf-lb-nav:hover { background: #FAF7F2; color: var(--charcoal); }
+.jf-lb-close:focus-visible,
+.jf-lb-nav:focus-visible { outline: 2px solid var(--champagne-gold); outline-offset: 2px; }
+.jf-lb-close { position: absolute; top: 16px; right: 16px; }
+
+@media (max-width: 640px) {
+  /* Arrows drop below the photo so the image gets the full width. */
+  .jf-lightbox { flex-wrap: wrap; align-content: center; }
+  .jf-lb-stage { order: 1; flex: 1 0 100%; }
+  .jf-lb-prev { order: 2; }
+  .jf-lb-next { order: 3; }
+  .jf-lb-stage img { max-height: 64dvh; }
+  .jf-look-zoom { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jf-lightbox { animation: none; }
+  .jf-look-zoom { transition: none; }
+}

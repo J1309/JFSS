@@ -7,7 +7,6 @@ import HeroSection from '@/components/home/HeroSection';
 import CraftMarquee from '@/components/home/CraftMarquee';
 import CollectionsGrid from '@/components/home/CollectionsGrid';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
-import Lookbook from '@/components/home/Lookbook';
 import StatementBand from '@/components/home/StatementBand';
 import BrandStory from '@/components/home/BrandStory';
 import Testimonials from '@/components/home/Testimonials';
@@ -23,7 +22,6 @@ export default function Home() {
         <CraftMarquee />
         <CollectionsGrid />
         <FeaturedProducts />
-        <Lookbook />
         <StatementBand />
         <BrandStory />
         <Testimonials />
