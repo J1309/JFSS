@@ -40,8 +40,6 @@ export default function HeroRoulette() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="jf-carousel-aura" />
-
       <div className="jf-carousel-viewport">
         <div className="jf-carousel-track" style={{ transform: `translateX(-${index * 100}%)` }}>
           {shots.map((shot, i) => (

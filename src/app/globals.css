@@ -3192,26 +3192,6 @@ input, textarea, select {
   flex-direction: column;
   gap: var(--space-lg);
 }
-/* Organic crimson blob behind the photo — peeks out past the frame edges.
-   Our shots keep their studio backdrop, so this sits behind the rounded
-   frame rather than behind a cut-out figure. */
-.jf-carousel-aura {
-  position: absolute;
-  inset: -9% -12% 14%;
-  border-radius: 58% 42% 46% 54% / 44% 50% 50% 56%;
-  background: linear-gradient(150deg, var(--crimson) 0%, var(--crimson-light) 55%, var(--champagne-gold) 130%);
-  opacity: 0.9;
-  z-index: -1;
-  pointer-events: none;
-  animation: jf-blob-drift 18s ease-in-out infinite;
-}
-@keyframes jf-blob-drift {
-  0%, 100% { border-radius: 58% 42% 46% 54% / 44% 50% 50% 56%; transform: rotate(0deg); }
-  50% { border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%; transform: rotate(-3deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .jf-carousel-aura { animation: none; }
-}
 .jf-carousel-viewport {
   position: relative;
   width: 100%;
