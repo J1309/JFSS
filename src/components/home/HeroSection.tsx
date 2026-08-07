@@ -56,12 +56,12 @@ export default function HeroSection() {
           <HeroLoopingLogo />
 
           <h1 className="jf-hero-title">
-            Comfort, <span className="accent">worn every day.</span>
+            Dailywear, <span className="accent">thoughtfully made.</span>
           </h1>
 
           <p className="jf-hero-sub">
-            Breathable organic cottons, breezy short kurtas and relaxed co-ords —
-            South Asian dailywear, reimagined for how you actually live.
+            Breathable organic cottons, slub linens and relaxed silhouettes —
+            South Asian essentials, designed for everyday wear.
           </p>
 
           <div className="jf-hero-cta">
