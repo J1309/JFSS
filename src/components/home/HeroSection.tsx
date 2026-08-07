@@ -3,11 +3,29 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Link from 'next/link';
+import { useQuery } from 'convex/react';
+import { anyApi } from 'convex/server';
 import HeroLoopingLogo from './HeroLoopingLogo';
 import HeroRoulette from './HeroRoulette';
+import { getFeaturedProducts } from '@/data/products';
+import { getProductImage } from '@/data/images';
+
+const CONVEX_READY = Boolean(process.env.NEXT_PUBLIC_CONVEX_URL);
+
+// Where each floating card sits over the carousel. Percentages so the
+// positions scale with the stage rather than drifting at other widths.
+// The stage's right edge sits at the viewport edge, so right-hand cards use
+// positive offsets and overlap the photo; only the left pair hangs outside.
+const FLOAT_SPOTS = [
+  { top: '4%', left: '-13%' },
+  { top: '20%', right: '4%' },
+  { top: '56%', left: '-17%' },
+  { top: '74%', right: '8%' },
+];
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
+  const floats = getFeaturedProducts().slice(0, 4);
 
   useEffect(() => {
     if (!heroRef.current) return;
@@ -20,7 +38,13 @@ export default function HeroSection() {
         .from('.jf-hero-title', { y: 30, opacity: 0, duration: 0.9 }, '-=0.2')
         .from('.jf-hero-sub', { y: 20, opacity: 0, duration: 0.7 }, '-=0.5')
         .from('.jf-hero-cta', { y: 18, opacity: 0, duration: 0.6 }, '-=0.4')
-        .from('.jf-hero-stage', { x: 44, opacity: 0, duration: 1 }, '-=0.7');
+        .from('.jf-hero-proof', { y: 14, opacity: 0, duration: 0.5 }, '-=0.35')
+        .from('.jf-hero-stage', { x: 44, opacity: 0, duration: 1 }, '-=0.7')
+        .from(
+          '.jf-hero-float',
+          { y: 24, opacity: 0, scale: 0.92, duration: 0.55, stagger: 0.09 },
+          '-=0.55'
+        );
     }, heroRef);
 
     return () => ctx.revert();
@@ -53,11 +77,30 @@ export default function HeroSection() {
               New in
             </Link>
           </div>
+
+          {/* Mounted only with a backend: useQuery needs ConvexProvider in the
+              tree, and the provider no-ops when NEXT_PUBLIC_CONVEX_URL is unset. */}
+          {CONVEX_READY && <SocialProof />}
         </div>
 
-        {/* Right: auto-rotating product carousel with horizontal slide */}
+        {/* Right: auto-rotating photo carousel with floating product cards */}
         <div className="jf-hero-stage">
           <HeroRoulette />
+
+          {floats.map((product, i) => (
+            <Link
+              key={product.id}
+              href={`/product/${product.id}`}
+              className="jf-hero-float"
+              style={FLOAT_SPOTS[i]}
+            >
+              <img src={getProductImage(product.id)} alt="" loading="lazy" />
+              <span className="jf-hero-float-text">
+                <span className="jf-hero-float-name">{product.name}</span>
+                <span className="jf-hero-float-price">${product.price}</span>
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -66,5 +109,30 @@ export default function HeroSection() {
         <i />
       </div>
     </section>
+  );
+}
+
+/**
+ * Customer proof, from real data only. Renders nothing until the store has
+ * actually taken orders — no invented "loved by 50,000+" claim. Avatars are
+ * neutral monograms because we hold no customer imagery.
+ */
+function SocialProof() {
+  const count = useQuery(anyApi.orders.customerCount, {}) as number | undefined;
+
+  if (!count || count < 1) return null;
+
+  return (
+    <div className="jf-hero-proof">
+      <span className="jf-proof-avatars" aria-hidden="true">
+        {Array.from({ length: Math.min(count, 4) }).map((_, i) => (
+          <span key={i} className="jf-proof-avatar" />
+        ))}
+      </span>
+      <span className="jf-proof-text">
+        Loved by <b>{count.toLocaleString()}</b>{' '}
+        {count === 1 ? 'customer' : 'customers'}
+      </span>
+    </div>
   );
 }

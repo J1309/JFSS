@@ -1,4 +1,4 @@
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 
 /**
@@ -62,6 +62,23 @@ export const place = mutation({
     }
 
     return { orderNumber, id };
+  },
+});
+
+/**
+ * Public: how many distinct people have ordered. Count only — no names or
+ * emails, since this renders on the public storefront. Returns 0 when the
+ * store has no orders yet, and the hero hides its proof row on 0.
+ * ponytail: full scan; fine at small-store volume.
+ */
+export const customerCount = query({
+  args: {},
+  handler: async (ctx) => {
+    const orders = await ctx.db.query('orders').collect();
+    const emails = new Set(
+      orders.filter((o) => o.status !== 'cancelled').map((o) => o.customerEmail)
+    );
+    return emails.size;
   },
 });
 
