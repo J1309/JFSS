@@ -513,12 +513,13 @@ input, textarea, select {
 /* Scrolled navbar turns crimson — flip its contents to light */
 .navbar-link { transition: color var(--transition-base); }
 .navbar-scrolled .brand-logo { color: #FAF7F2; }
+/* Scrolled nav goes crimson — give the navy mark a light plate so it reads. */
 .navbar-scrolled .logo-symbol {
-  background: rgba(255, 255, 255, 0.16);
-  color: #FAF7F2;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius-full);
+  padding: 3px;
   box-shadow: none;
 }
-.navbar-scrolled .logo-symbol circle { fill: #F0C46A; }
 .navbar-scrolled .navbar-link { color: #FAF7F2; }
 .navbar-scrolled .navbar-link::after { background: #F0C46A; }
 .navbar-scrolled .navbar-icon-btn { color: #FAF7F2; }
@@ -540,22 +541,23 @@ input, textarea, select {
   transform: translateY(-1px);
 }
 
+/* Holds the real peacock mark — no tile or colour inversion, the artwork
+   carries its own navy/gold. */
 .logo-symbol {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  background: rgba(28, 25, 23, 0.04);
-  color: var(--charcoal);
-  transition: all var(--transition-base);
-  box-shadow: 0 2px 8px rgba(28, 25, 23, 0.06);
+  transition: transform var(--transition-base);
+}
+.logo-mark {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .brand-logo:hover .logo-symbol {
-  background: var(--charcoal);
-  color: #FAF7F2;
-  transform: rotate(5deg) scale(1.05);
-  box-shadow: 0 6px 20px rgba(163, 72, 40, 0.3);
+  transform: rotate(4deg) scale(1.06);
 }
 
 .brand-logo:hover .symbol-frame {
@@ -5064,8 +5066,24 @@ input, textarea, select {
   transition: transform var(--dur-base, 300ms) var(--jf-ease-out),
     box-shadow var(--dur-base, 300ms) var(--jf-ease-out);
 }
+/* Actually float — each card bobs on its own offset and duration so they
+   drift independently rather than moving as one block. The animation lives
+   on an inner wrapper-free element, so :hover can still use transform. */
+/* The carousel is the stage's first child, so the cards are children 2-5. */
+.jf-hero-float { animation: jf-float 6s ease-in-out infinite; }
+.jf-hero-float:nth-child(2) { animation-duration: 7.2s; animation-delay: -1.4s; }
+.jf-hero-float:nth-child(3) { animation-duration: 5.4s; animation-delay: -2.8s; }
+.jf-hero-float:nth-child(4) { animation-duration: 8s;   animation-delay: -0.7s; }
+.jf-hero-float:nth-child(5) { animation-duration: 6.6s; animation-delay: -3.5s; }
+
+@keyframes jf-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-13px) rotate(-1.2deg); }
+}
+
 .jf-hero-float:hover {
-  transform: translateY(-5px);
+  animation-play-state: paused;
+  transform: translateY(-5px) scale(1.04);
   box-shadow: 0 22px 52px rgba(155, 0, 0, 0.24);
 }
 .jf-hero-float:focus-visible { outline: 2px solid var(--crimson); outline-offset: 3px; }
@@ -5155,6 +5173,6 @@ input, textarea, select {
   .jf-trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .jf-hero-float { transition: none; }
+  .jf-hero-float { transition: none; animation: none; }
   .jf-hero-float:hover { transform: none; }
 }

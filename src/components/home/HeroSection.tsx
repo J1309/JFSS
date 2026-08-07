@@ -40,11 +40,9 @@ export default function HeroSection() {
         .from('.jf-hero-cta', { y: 18, opacity: 0, duration: 0.6 }, '-=0.4')
         .from('.jf-hero-proof', { y: 14, opacity: 0, duration: 0.5 }, '-=0.35')
         .from('.jf-hero-stage', { x: 44, opacity: 0, duration: 1 }, '-=0.7')
-        .from(
-          '.jf-hero-float',
-          { y: 24, opacity: 0, scale: 0.92, duration: 0.55, stagger: 0.09 },
-          '-=0.55'
-        );
+        // Opacity only: the cards' CSS float animation owns their transform,
+        // and CSS animations outrank the inline styles GSAP would set.
+        .from('.jf-hero-float', { opacity: 0, duration: 0.55, stagger: 0.09 }, '-=0.55');
     }, heroRef);
 
     return () => ctx.revert();

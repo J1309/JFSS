@@ -4,7 +4,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CartDrawer from '@/components/layout/CartDrawer';
 import HeroSection from '@/components/home/HeroSection';
-import TrustBar from '@/components/home/TrustBar';
 import CraftMarquee from '@/components/home/CraftMarquee';
 import CollectionsGrid from '@/components/home/CollectionsGrid';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
@@ -20,7 +19,6 @@ export default function Home() {
       <CartDrawer />
       <main>
         <HeroSection />
-        <TrustBar />
         <CraftMarquee />
         <CollectionsGrid />
         <FeaturedProducts />
